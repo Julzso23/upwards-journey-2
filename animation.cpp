@@ -20,7 +20,7 @@ Animation::Animation(sf::String texturePath, float period, int frames, sf::Vecto
 	texture.loadFromFile(texturePath);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(frameRect);
-	sprite.setOrigin(frameSize.x / 2, frameSize.y / 2);
+	sprite.setOrigin(frameSize.x / 2.f, frameSize.y / 2.f);
 }
 
 void Animation::create(sf::String texturePath, float period, int frames, sf::Vector2i frameSize, int minFrame)
@@ -33,7 +33,7 @@ void Animation::create(sf::String texturePath, float period, int frames, sf::Vec
 	texture.loadFromFile(texturePath);
 	sprite.setTexture(texture);
 	sprite.setTextureRect(frameRect);
-	sprite.setOrigin(frameSize.x / 2, frameSize.y / 2);
+	sprite.setOrigin(frameSize.x / 2.f, frameSize.y / 2.f);
 }
 
 sf::Sprite Animation::getSprite()
@@ -69,4 +69,13 @@ void Animation::setRot(float angle)
 float Animation::getRot()
 {
 	return sprite.getRotation();
+}
+
+void Animation::setScale(sf::Vector2f scale)
+{
+	sprite.setScale(scale);
+}
+sf::Vector2f Animation::getScale()
+{
+	return sprite.getScale();
 }

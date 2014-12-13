@@ -24,6 +24,8 @@ class Animation
 		sf::Vector2f getPos();
 		void setRot(float angle);
 		float getRot();
+		void setScale(sf::Vector2f scale);
+		sf::Vector2f getScale();
 };
 
 #endif
