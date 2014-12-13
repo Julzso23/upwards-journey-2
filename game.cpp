@@ -30,15 +30,15 @@ void Game::run()
 		sf::Time deltaTime = time.restart();
 		update(deltaTime.asSeconds());
 
-		float xScale = window.getSize().x / 1920.f;
-		float yScale = window.getSize().y / 1080.f;
-		if (xScale <= yScale)
+		if (window.getSize().x / 1920.f <= window.getSize().y / 1080.f)
 		{
-			camera.setViewport(sf::FloatRect(0, 0, 1, window.getSize().x / window.getSize().y));
+			float yScale = (window.getSize().x * (9.f / 16.f)) / window.getSize().y;
+			camera.setViewport(sf::FloatRect(0.f, (1.f - yScale) / 2, 1.f, yScale));
 		}
 		else
 		{
-			camera.setViewport(sf::FloatRect(0, 0, window.getSize().y / window.getSize().x, 1));
+			float xScale = (window.getSize().y * (16.f / 9.f)) / window.getSize().x;
+			camera.setViewport(sf::FloatRect((1.f - xScale) / 2, 0.f, xScale, 1.f));
 		}
 
 		window.clear();

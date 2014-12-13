@@ -3,7 +3,7 @@
 
 void main()
 {
-	UJ upwardsJourney("Upwards Journey 2", sf::VideoMode(1600, 600), false);
+	UJ upwardsJourney("Upwards Journey 2", sf::VideoMode::getDesktopMode(), true);
 
 	upwardsJourney.run();
 }
