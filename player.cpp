@@ -1,14 +1,14 @@
 #include "Player.h"
 #include "Game.h"
 #include <cmath>
-#include <iostream>
 
 Player::Player()
 {
-	position = sf::Vector2f(960, 540);
-	speed = sf::Vector2f(400, 0);
+	position = sf::Vector2f(960, 800);
+	speed = sf::Vector2f(600, 0);
 	lives = 3;
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
+	animation.setScale(sf::Vector2f(2.f, 2.f));
 	vibrationOffset = sf::Vector2f(0, 0);
 }
 Player::Player(float x, float y)

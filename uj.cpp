@@ -13,9 +13,11 @@ void UJ::update(float dt)
 {
 	player.update(dt);
 	player.move(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
+	background.update(dt);
 }
 
 void UJ::draw()
 {
+	render(background.getSprite());
 	render(player.getSprite());
 }
