@@ -1,5 +1,5 @@
-#ifndef UPWARDSJOURNEY
-#define UPWARDSJOURNEY
+#ifndef UPWARDSJOURNEY_H
+#define UPWARDSJOURNEY_H
 
 #include <SFML\Graphics.hpp>
 #include "Axis.h"

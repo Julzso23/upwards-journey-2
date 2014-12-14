@@ -1,5 +1,5 @@
-#ifndef BACKGROUND
-#define BACKGROUND
+#ifndef BACKGROUND_H
+#define BACKGROUND_H
 
 #include <SFML\Graphics.hpp>
 
