@@ -24,6 +24,8 @@ void Player::move(sf::Vector2f direction, float dt)
 {
 	position.x = position.x + speed.x * direction.x * dt;
 	position.y = position.y + speed.y * direction.y * dt;
+	if (position.x > 1920.f) position.x = 1920.f;
+	if (position.x < 0.f) position.x = 0.f;
 	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
 	animation.setRot(direction.x * 25);
 }
@@ -31,6 +33,8 @@ void Player::move(float mod, float arg, float dt)
 {
 	position.x = position.x + speed.x * mod * cosf(arg) * dt;
 	position.y = position.y + speed.y * mod * sinf(arg) * dt;
+	if (position.x > 1920.f) position.x = 1920.f;
+	if (position.x < 0.f) position.x = 0.f;
 	animation.setPos(position);
 	animation.setRot(arg);
 }
