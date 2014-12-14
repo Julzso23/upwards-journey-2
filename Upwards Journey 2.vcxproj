@@ -23,6 +23,9 @@
     <ClInclude Include="Axis.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GUI\Base.h" />
+    <ClInclude Include="GUI\Button.h" />
+    <ClInclude Include="GUI\Menu.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="UJ.h" />
   </ItemGroup>
@@ -31,6 +34,9 @@
     <ClCompile Include="axis.cpp" />
     <ClCompile Include="background.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="GUI\base.cpp" />
+    <ClCompile Include="GUI\button.cpp" />
+    <ClCompile Include="GUI\menu.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="uj.cpp" />
@@ -38,6 +44,9 @@
   <ItemGroup>
     <Image Include="images\background.png" />
     <Image Include="images\player.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="fonts\Frail-Sans.otf" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3977129A-8511-4B6D-B8F0-F6B132B895DB}</ProjectGuid>
