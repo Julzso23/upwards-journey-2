@@ -6,7 +6,8 @@
 #include "Player.h"
 #include "Background.h"
 
-class UJ : public Game {
+class UJ : public Game
+{
 private:
 	Player player;
 	Axis xAxis;

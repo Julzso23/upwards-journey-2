@@ -55,31 +55,6 @@ void Game::render(const sf::Drawable &drawable)
 	window.draw(drawable);
 }
 
-void Game::drawRect(float x, float y, float w, float h)
-{
-	sf::RectangleShape rect(sf::Vector2f(w, h));
-	rect.setPosition(sf::Vector2f(x, y));
-	render(rect);
-}
-void Game::drawRect(sf::Vector2f pos, sf::Vector2f size)
-{
-	sf::RectangleShape rect(size);
-	rect.setPosition(pos);
-	render(rect);
-}
-void Game::drawRect(float x, float y, sf::Vector2f size)
-{
-	sf::RectangleShape rect(size);
-	rect.setPosition(sf::Vector2f(x, y));
-	render(rect);
-}
-void Game::drawRect(sf::Vector2f pos, float w, float h)
-{
-	sf::RectangleShape rect(sf::Vector2f(w, h));
-	rect.setPosition(pos);
-	render(rect);
-}
-
 void Game::setResolution(sf::Vector2u size)
 {
 	window.setSize(size);
