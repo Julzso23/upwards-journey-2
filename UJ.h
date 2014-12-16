@@ -18,6 +18,8 @@ public:
 	void load();
 	void update(float dt);
 	void draw();
+	void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
+	void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
 };
 
 #endif

@@ -11,8 +11,6 @@ Game::Game(sf::String title, sf::VideoMode size, bool fullscreen)
 void Game::run()
 {
 	camera.reset(sf::FloatRect(0, 0, 1920, 1080));
-	sf::RectangleShape testRect(sf::Vector2f(1920, 1080));
-	testRect.setFillColor(sf::Color(255, 255, 2552, 255));
 
 	load();
 
@@ -24,6 +22,8 @@ void Game::run()
 			switch (event.type)
 			{
 				case sf::Event::Closed: window.close();
+				case sf::Event::MouseButtonPressed: mousePressed(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+				case sf::Event::MouseButtonReleased: mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
 			}
 		}
 
@@ -43,7 +43,6 @@ void Game::run()
 
 		window.clear();
 		window.setView(camera);
-		window.draw(testRect);
 		draw();
 		window.setView(window.getDefaultView());
 		window.display();
@@ -58,4 +57,9 @@ void Game::render(const sf::Drawable &drawable)
 void Game::setResolution(sf::Vector2u size)
 {
 	window.setSize(size);
+}
+
+void Game::exit()
+{
+	window.close();
 }
