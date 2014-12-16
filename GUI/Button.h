@@ -2,6 +2,7 @@
 #define GUI_BUTTON_H
 
 #include "Base.h"
+#include <functional>
 
 namespace GUI
 {
@@ -11,11 +12,24 @@ namespace GUI
 		sf::RectangleShape shape;
 		sf::Text text;
 		GUI::State state;
+		std::function<void()> onClick;
 	public:
 		Button();
-		Button(sf::String text, sf::Vector2f postion, sf::Vector2f size);
-		sf::RectangleShape getShape();
-		sf::Text getDrawText();
+		Button(sf::String text, std::function<void()> func);
+		Button(sf::String text, sf::Vector2f position, sf::Vector2f size);
+		void create(sf::String text, sf::Vector2f position, sf::Vector2f size);
+
+		void update(float dt);
+
+		void draw(sf::RenderWindow* window);
+
+		void mousePressed(sf::Mouse::Button button);
+		void mouseReleased(sf::Mouse::Button button);
+
+		void setClickFunc(std::function<void()> func);
+
+		void setPos(sf::Vector2f position);
+		sf::Vector2f getPos();
 	};
 }
 

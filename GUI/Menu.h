@@ -18,7 +18,9 @@ namespace GUI
 		void show();
 		void hide();
 		void update(float dt);
-		void draw();
+		void draw(sf::RenderWindow* window);
+		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
+		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
 	};
 }
 

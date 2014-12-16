@@ -43,7 +43,7 @@ void Game::run()
 
 		window.clear();
 		window.setView(camera);
-		draw();
+		draw(&window);
 		window.setView(window.getDefaultView());
 		window.display();
 	}
