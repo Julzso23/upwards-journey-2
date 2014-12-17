@@ -21,9 +21,16 @@ void Game::run()
 		{
 			switch (event.type)
 			{
-				case sf::Event::Closed: window.close();
-				case sf::Event::MouseButtonPressed: mousePressed(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-				case sf::Event::MouseButtonReleased: mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+				case sf::Event::Closed: {
+					window.close();
+				}
+				case sf::Event::MouseButtonPressed: {
+					mousePressed(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+				} break;
+				case sf::Event::MouseButtonReleased: {
+					mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
+				} break;
+				default: break;
 			}
 		}
 
