@@ -6,9 +6,10 @@ namespace GUI
 	{
 		create("Button", sf::Vector2f(0.f, 0.f), sf::Vector2f(256.f, 64.f));
 	}
-	Button::Button(sf::String text, std::function<void()> func)
+	Button::Button(sf::String text, std::function<void()> func, sf::Font* font)
 	{
-		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(256.f, 64.f));
+		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(512.f, 128.f));
+		this->text.setFont(*font);
 		setClickFunc(func);
 	}
 	Button::Button(sf::String text, sf::Vector2f position, sf::Vector2f size)
@@ -18,14 +19,11 @@ namespace GUI
 
 	void Button::create(sf::String text, sf::Vector2f position, sf::Vector2f size)
 	{
-		Base();
-
 		this->shape.setPosition(position);
 		this->shape.setSize(size);
 
 		this->text.setString(text);
 		this->text.setCharacterSize(size.y - 16);
-		this->text.setFont(font);
 		this->text.setPosition(sf::Vector2f(position.x + (size.x / 2) - (this->text.getLocalBounds().width / 2), position.y + (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
 		this->text.setColor(sf::Color(0, 0, 0, 255));
 
@@ -46,15 +44,15 @@ namespace GUI
 	void Button::draw(sf::RenderWindow* window)
 	{
 		window->draw(shape);
-		//window->draw(text);
+		window->draw(text);
 	}
 
-	void Button::mousePressed(sf::Mouse::Button button)
+	void Button::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		if (state == GUI::State::Hover)
 			state = GUI::State::Click;
 	}
-	void Button::mouseReleased(sf::Mouse::Button button)
+	void Button::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		if (state == GUI::State::Click)
 			onClick();

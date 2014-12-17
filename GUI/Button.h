@@ -6,7 +6,7 @@
 
 namespace GUI
 {
-	class Button : public GUI::Base
+	class Button : public Base
 	{
 	private:
 		sf::RectangleShape shape;
@@ -15,7 +15,7 @@ namespace GUI
 		std::function<void()> onClick;
 	public:
 		Button();
-		Button(sf::String text, std::function<void()> func);
+		Button(sf::String text, std::function<void()> func, sf::Font* font);
 		Button(sf::String text, sf::Vector2f position, sf::Vector2f size);
 		void create(sf::String text, sf::Vector2f position, sf::Vector2f size);
 
@@ -23,8 +23,8 @@ namespace GUI
 
 		void draw(sf::RenderWindow* window);
 
-		void mousePressed(sf::Mouse::Button button);
-		void mouseReleased(sf::Mouse::Button button);
+		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
+		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
 
 		void setClickFunc(std::function<void()> func);
 

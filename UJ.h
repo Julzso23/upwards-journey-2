@@ -15,14 +15,26 @@ private:
 	Axis xAxis;
 	Axis yAxis;
 	Background background;
+
 	GUI::Menu mainMenu;
+	GUI::Menu optionsMenu;
+	GUI::Menu* curMenu;
+
+	sf::Font font;
 public:
 	UJ::UJ(sf::String title, sf::VideoMode size, bool fullscreen) : Game(title, size, fullscreen) {};
+
 	void load();
+
 	void update(float dt);
+
 	void draw(sf::RenderWindow* window);
+
 	void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
 	void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
+
+	void setMenu();
+	void setMenu(GUI::Menu* menu);
 };
 
 #endif

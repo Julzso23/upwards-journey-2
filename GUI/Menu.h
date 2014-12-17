@@ -10,17 +10,27 @@ namespace GUI
 	{
 	private:
 		std::vector<Button> buttons;
+		sf::Vector2f position;
 		bool enabled;
 	public:
 		Menu();
 		Menu(std::vector<Button> buttons);
 		void setButtons(std::vector<Button> buttons);
+
 		void show();
 		void hide();
+
 		void update(float dt);
+
 		void draw(sf::RenderWindow* window);
+
 		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
 		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
+
+		void setPos(sf::Vector2f position);
+		sf::Vector2f getPos();
+
+		int getHeight();
 	};
 }
 

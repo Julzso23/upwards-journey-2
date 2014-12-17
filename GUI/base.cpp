@@ -2,8 +2,4 @@
 
 namespace GUI
 {
-	Base::Base()
-	{
-		font.loadFromFile("fonts/Frail-Sans.otf");
-	}
 }

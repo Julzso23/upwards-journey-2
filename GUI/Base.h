@@ -9,8 +9,6 @@ namespace GUI
 	{
 	private:
 	public:
-		Base();
-		sf::Font font;
 	};
 
 	enum State
