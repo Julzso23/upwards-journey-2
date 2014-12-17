@@ -36,9 +36,14 @@ namespace GUI
 		sf::Vector2f pos = shape.getPosition();
 		sf::Vector2f size = shape.getSize();
 		if ((mouse.x > pos.x) && (mouse.x < pos.x + size.x) && (mouse.y > pos.y) && (mouse.y < pos.y + size.y))
-			state = GUI::State::Hover;
+		{
+			if (state != GUI::State::Click)
+				state = GUI::State::Hover;
+		}
 		else
+		{
 			state = GUI::State::Idle;
+		}
 	}
 
 	void Button::draw(sf::RenderWindow* window)
@@ -49,13 +54,16 @@ namespace GUI
 
 	void Button::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 	{
-		if (state == GUI::State::Hover)
+		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Hover))
 			state = GUI::State::Click;
 	}
 	void Button::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 	{
-		if (state == GUI::State::Click)
+		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Click))
+		{
+			state = GUI::State::Idle;
 			onClick();
+		}
 	}
 
 	void Button::setClickFunc(std::function<void()> func)
