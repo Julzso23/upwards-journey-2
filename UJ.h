@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Background.h"
 #include "GUI\Menu.h"
+#include "ObsticleDropper.h"
 
 class UJ : public Game
 {
@@ -14,7 +15,10 @@ private:
 	Player player;
 	Axis xAxis;
 	Axis yAxis;
+
 	Background background;
+
+	ObsticleDropper dropper;
 
 	GUI::Menu mainMenu;
 	GUI::Menu optionsMenu;

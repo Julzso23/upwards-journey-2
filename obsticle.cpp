@@ -1,0 +1,26 @@
+#include "Obsticle.h"
+
+Obsticle::Obsticle(sf::Vector2f position, float size, sf::Vector2f speed)
+{
+	this->position = position;
+	this->speed = speed;
+	this->size = size;
+	this->shape.setPosition(position);
+	this->shape.setSize(sf::Vector2f(size, size));
+	this->shape.setFillColor(sf::Color::Black);
+}
+
+bool Obsticle::drop(float dt)
+{
+	position.x += speed.x * dt;
+	position.y += speed.y * dt;
+	shape.setPosition(position);
+	if (position.y > 1080.f)
+		return true;
+	return false;
+}
+
+void Obsticle::draw(sf::RenderWindow* window)
+{
+	window->draw(shape);
+}

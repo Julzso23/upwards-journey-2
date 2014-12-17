@@ -26,6 +26,8 @@
     <ClInclude Include="GUI\Base.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\Menu.h" />
+    <ClInclude Include="Obsticle.h" />
+    <ClInclude Include="ObsticleDropper.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="UJ.h" />
   </ItemGroup>
@@ -38,6 +40,8 @@
     <ClCompile Include="GUI\button.cpp" />
     <ClCompile Include="GUI\menu.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="obsticle.cpp" />
+    <ClCompile Include="obsticleDropper.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="uj.cpp" />
   </ItemGroup>

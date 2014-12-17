@@ -15,7 +15,7 @@ sf::Sprite Background::getSprite()
 
 void Background::update(float dt)
 {
-	sprite.move(0, 1500.f * dt);
+	sprite.move(0, 1000.f * dt);
 	if (sprite.getPosition().y > -15)
 	{
 		sprite.move(0, -4310.f * (3.f / 2.f));
