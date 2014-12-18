@@ -36,3 +36,8 @@ void ObsticleDropper::draw(sf::RenderWindow* window)
 	for (int i = 0; i < obsticles.size(); i++)
 		obsticles[i].draw(window);
 }
+
+std::vector<Obsticle>* ObsticleDropper::getObsticles()
+{
+	return &obsticles;
+}

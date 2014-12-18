@@ -24,3 +24,13 @@ void Obsticle::draw(sf::RenderWindow* window)
 {
 	window->draw(shape);
 }
+
+sf::Vector2f Obsticle::getPos()
+{
+	return position;
+}
+
+float Obsticle::getSize()
+{
+	return size;
+}

@@ -41,6 +41,7 @@ void Player::move(float mod, float arg, float dt)
 
 void Player::update(float dt)
 {
+	animation.setColour(sf::Color(255, 255, 255, 255));
 	animation.update(dt);
 	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock.getElapsedTime().asSeconds()));
 	if (vibrateClock.getElapsedTime().asSeconds() >= 2 * 3.14159265)
@@ -55,4 +56,10 @@ sf::Vector2f Player::getPos()
 sf::Sprite Player::getSprite()
 {
 	return animation.getSprite();
+}
+
+void Player::isColliding(Obsticle* obsticle)
+{
+	if (((position.x + 16) > obsticle->getPos().x) && ((position.x - 16) < (obsticle->getPos().x + obsticle->getSize())) && ((position.y + 48) > obsticle->getPos().y) && ((position.y - 48) < (obsticle->getPos().y + obsticle->getSize())))
+		animation.setColour(sf::Color(255, 0, 0, 255));
 }

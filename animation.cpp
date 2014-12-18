@@ -79,3 +79,8 @@ sf::Vector2f Animation::getScale()
 {
 	return sprite.getScale();
 }
+
+void Animation::setColour(sf::Color colour)
+{
+	sprite.setColor(colour);
+}

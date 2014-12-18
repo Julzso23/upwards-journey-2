@@ -14,6 +14,8 @@ public:
 	Obsticle(sf::Vector2f position, float size, sf::Vector2f speed);
 	bool drop(float dt);
 	void draw(sf::RenderWindow* window);
+	sf::Vector2f getPos();
+	float getSize();
 };
 
 #endif

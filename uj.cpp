@@ -29,18 +29,21 @@ void UJ::load()
 	yAxis.create(ControlSet(sf::Keyboard::Down, 0, sf::Joystick::Y, true, -1), ControlSet(sf::Keyboard::Up, 0, sf::Joystick::Y, false, -1), 0.25);
 
 	dropper.create(6.f, 192, 128);
+	obsticles = dropper.getObsticles();
 }
 
 void UJ::update(float dt)
 {
 	player.update(dt);
 	player.move(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
+	for (int i = 0; i < obsticles->size(); i++)
+		player.isColliding(&(*obsticles)[i]);
 
 	background.update(dt);
 
 	dropper.update(dt);
 
-	curMenu->update(dt);
+	curMenu->update(dt, mousePos());
 }
 
 void UJ::draw(sf::RenderWindow* window)

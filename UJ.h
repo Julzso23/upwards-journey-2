@@ -19,6 +19,7 @@ private:
 	Background background;
 
 	ObsticleDropper dropper;
+	std::vector<Obsticle>* obsticles;
 
 	GUI::Menu mainMenu;
 	GUI::Menu optionsMenu;

@@ -26,6 +26,7 @@ public:
 	float getRot();
 	void setScale(sf::Vector2f scale);
 	sf::Vector2f getScale();
+	void setColour(sf::Color colour);
 };
 
 #endif

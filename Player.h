@@ -3,6 +3,7 @@
 
 #include <SFML\Graphics.hpp>
 #include "Animation.h"
+#include "Obsticle.h"
 
 class Player
 {
@@ -16,11 +17,16 @@ private:
 public:
 	Player();
 	Player(float x, float y);
+
 	void move(sf::Vector2f direction, float dt);
 	void move(float mod, float arg, float dt);
+
 	void update(float dt);
+
 	sf::Vector2f getPos();
 	sf::Sprite getSprite();
+
+	void isColliding(Obsticle* obsticle);
 };
 
 #endif
