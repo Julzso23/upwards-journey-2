@@ -20,7 +20,7 @@ namespace GUI
 		void show();
 		void hide();
 
-		void update(float dt);
+		void update(float dt, sf::Vector2i mousePos);
 
 		void draw(sf::RenderWindow* window);
 

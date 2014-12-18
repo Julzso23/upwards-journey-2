@@ -30,11 +30,11 @@ namespace GUI
 		enabled = false;
 	}
 
-	void Menu::update(float dt)
+	void Menu::update(float dt, sf::Vector2i mousePos)
 	{
 		if (enabled)
 			for (int i = 0; i < buttons.size(); i++)
-				buttons[i].update(dt);
+				buttons[i].update(dt, mousePos);
 	}
 
 	void Menu::draw(sf::RenderWindow* window)

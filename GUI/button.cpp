@@ -30,19 +30,23 @@ namespace GUI
 		state = GUI::State::Idle;
 	}
 
-	void Button::update(float dt)
+	void Button::update(float dt, sf::Vector2i mousePos)
 	{
-		sf::Vector2i mouse = sf::Mouse::getPosition();
+		sf::Vector2i mouse = mousePos;
 		sf::Vector2f pos = shape.getPosition();
 		sf::Vector2f size = shape.getSize();
 		if ((mouse.x > pos.x) && (mouse.x < pos.x + size.x) && (mouse.y > pos.y) && (mouse.y < pos.y + size.y))
 		{
 			if (state != GUI::State::Click)
+			{
 				state = GUI::State::Hover;
+				shape.setFillColor(sf::Color(225, 225, 225, 255));
+			}
 		}
 		else
 		{
 			state = GUI::State::Idle;
+			shape.setFillColor(sf::Color(255, 255, 255, 255));
 		}
 	}
 
@@ -55,13 +59,17 @@ namespace GUI
 	void Button::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Hover))
+		{
 			state = GUI::State::Click;
+			shape.setFillColor(sf::Color(200, 200, 200, 255));
+		}
 	}
 	void Button::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Click))
 		{
 			state = GUI::State::Idle;
+			shape.setFillColor(sf::Color(255, 255, 255, 255));
 			onClick();
 		}
 	}

@@ -66,6 +66,21 @@ void Game::setResolution(sf::Vector2u size)
 	window.setSize(size);
 }
 
+sf::Vector2i Game::mousePos()
+{
+	if (window.getSize().x / 1920.f <= window.getSize().y / 1080.f)
+	{
+		float yScale = (window.getSize().x * (9.f / 16.f)) / window.getSize().y;
+		return sf::Vector2i(sf::Mouse::getPosition(window).x * (1920.f / window.getSize().x), (sf::Mouse::getPosition(window).y - ((1 - yScale) / 2) * window.getSize().y) * (1920.f / window.getSize().x));
+	}
+	else
+	{
+		float xScale = (window.getSize().y * (16.f / 9.f)) / window.getSize().x;
+		return sf::Vector2i((sf::Mouse::getPosition(window).x - ((1 - xScale) / 2) * window.getSize().x) * (1080.f / window.getSize().y), sf::Mouse::getPosition(window).y * (1080.f / window.getSize().y));
+	}
+	return sf::Mouse::getPosition(window);
+}
+
 void Game::exit()
 {
 	window.close();

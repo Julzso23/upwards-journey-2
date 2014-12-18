@@ -19,7 +19,7 @@ namespace GUI
 		Button(sf::String text, sf::Vector2f position, sf::Vector2f size);
 		void create(sf::String text, sf::Vector2f position, sf::Vector2f size);
 
-		void update(float dt);
+		void update(float dt, sf::Vector2i mousePos);
 
 		void draw(sf::RenderWindow* window);
 

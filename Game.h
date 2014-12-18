@@ -17,6 +17,8 @@ public:
 
 	void setResolution(sf::Vector2u size);
 
+	sf::Vector2i mousePos();
+
 	void exit();
 
 	virtual void load() = 0;
