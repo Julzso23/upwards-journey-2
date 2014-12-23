@@ -30,6 +30,12 @@ void Game::run()
 				case sf::Event::MouseButtonReleased: {
 					mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
 				} break;
+				case sf::Event::KeyPressed: {
+					keyPressed(event.key.code);
+				} break;
+				case sf::Event::KeyReleased: {
+					keyReleased(event.key.code);
+				} break;
 				default: break;
 			}
 		}

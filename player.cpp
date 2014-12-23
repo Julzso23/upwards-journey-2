@@ -5,6 +5,7 @@
 Player::Player()
 {
 	position = sf::Vector2f(960, 800);
+	animation.setPos(position);
 	speed = sf::Vector2f(600, 0);
 	lives = 3;
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
@@ -14,6 +15,7 @@ Player::Player()
 Player::Player(float x, float y)
 {
 	position = sf::Vector2f(x, y);
+	animation.setPos(position);
 	speed = sf::Vector2f(400, 0);
 	lives = 3;
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
@@ -46,6 +48,7 @@ void Player::update(float dt)
 	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock.getElapsedTime().asSeconds()));
 	if (vibrateClock.getElapsedTime().asSeconds() >= 2 * 3.14159265)
 		vibrateClock.restart();
+	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
 }
 
 sf::Vector2f Player::getPos()

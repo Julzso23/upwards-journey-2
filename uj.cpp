@@ -10,7 +10,11 @@ void UJ::load()
 	font.loadFromFile("fonts/Frail-Sans.otf");
 
 	std::vector<GUI::Button> buttons;
-	buttons.insert(buttons.end(), GUI::Button("Play", [&](){setMenu();}, &font));
+	buttons.insert(buttons.end(), GUI::Button("Play", [&]()
+	{
+		setMenu();
+		paused = false;
+	}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Options", [&](){setMenu(&optionsMenu);}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Exit", [&](){exit();}, &font));
 	mainMenu.setButtons(buttons);
@@ -25,25 +29,38 @@ void UJ::load()
 	curMenu = &mainMenu;
 	curMenu->show();
 
+	std::vector<sf::Keyboard::Key> keys;
+	keys.insert(keys.end(), sf::Keyboard::Key::LAlt);
+	keys.insert(keys.end(), sf::Keyboard::Key::F4);
+	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){exit();}));
+
 	xAxis.create(ControlSet(sf::Keyboard::Right, 0, sf::Joystick::X, true, -1), ControlSet(sf::Keyboard::Left, 0, sf::Joystick::X, false, -1), 0.25);
 	yAxis.create(ControlSet(sf::Keyboard::Down, 0, sf::Joystick::Y, true, -1), ControlSet(sf::Keyboard::Up, 0, sf::Joystick::Y, false, -1), 0.25);
 
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
+
+	paused = true;
 }
 
 void UJ::update(float dt)
 {
 	player.update(dt);
-	player.move(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
-	for (int i = 0; i < obsticles->size(); i++)
-		player.isColliding(&(*obsticles)[i]);
 
 	background.update(dt);
 
-	dropper.update(dt);
+	if (!paused)
+	{
+		player.move(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
+		for (int i = 0; i < obsticles->size(); i++)
+			player.isColliding(&(*obsticles)[i]);
 
-	curMenu->update(dt, mousePos());
+		dropper.update(dt);
+	}
+	else
+	{
+		curMenu->update(dt, mousePos());
+	}
 }
 
 void UJ::draw(sf::RenderWindow* window)
@@ -63,6 +80,17 @@ void UJ::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 void UJ::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 {
 	curMenu->mouseReleased(button, position);
+}
+
+void UJ::keyPressed(sf::Keyboard::Key key)
+{
+	for (int i = 0; i < keyCommands.size(); i++)
+		keyCommands[i].keyPressed(key);
+}
+void UJ::keyReleased(sf::Keyboard::Key key)
+{
+	for (int i = 0; i < keyCommands.size(); i++)
+		keyCommands[i].keyReleased(key);
 }
 
 void UJ::setMenu()

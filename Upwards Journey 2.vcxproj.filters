@@ -60,6 +60,9 @@
     <ClInclude Include="ObsticleDropper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="KeyCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="axis.cpp">
@@ -96,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="obsticleDropper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="keyCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
