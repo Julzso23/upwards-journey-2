@@ -8,6 +8,7 @@ Player::Player()
 	animation.setPos(position);
 	speed = sf::Vector2f(600, 0);
 	lives = 3;
+	respawning = false;
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
 	animation.setScale(sf::Vector2f(2.f, 2.f));
 	vibrationOffset = sf::Vector2f(0, 0);
@@ -18,6 +19,7 @@ Player::Player(float x, float y)
 	animation.setPos(position);
 	speed = sf::Vector2f(400, 0);
 	lives = 3;
+	respawning = false;
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
 	vibrationOffset = sf::Vector2f(0, 0);
 }
@@ -43,12 +45,21 @@ void Player::move(float mod, float arg, float dt)
 
 void Player::update(float dt)
 {
-	animation.setColour(sf::Color(255, 255, 255, 255));
 	animation.update(dt);
 	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock.getElapsedTime().asSeconds()));
 	if (vibrateClock.getElapsedTime().asSeconds() >= 2 * 3.14159265)
 		vibrateClock.restart();
 	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
+	if (respawning)
+	{
+		animation.setColour(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
+		if (respawnClock.getElapsedTime().asSeconds() > 3.f)
+			respawning = false;
+	}
+	else
+	{
+		animation.setColour(sf::Color(255, 255, 255, 255));
+	}
 }
 
 sf::Vector2f Player::getPos()
@@ -63,6 +74,10 @@ sf::Sprite Player::getSprite()
 
 void Player::isColliding(Obsticle* obsticle)
 {
-	if (((position.x + 16) > obsticle->getPos().x) && ((position.x - 16) < (obsticle->getPos().x + obsticle->getSize())) && ((position.y + 48) > obsticle->getPos().y) && ((position.y - 48) < (obsticle->getPos().y + obsticle->getSize())))
-		animation.setColour(sf::Color(255, 0, 0, 255));
+	if (!respawning && ((position.x + 16) > obsticle->getPos().x) && ((position.x - 16) < (obsticle->getPos().x + obsticle->getSize())) && ((position.y + 48) > obsticle->getPos().y) && ((position.y - 48) < (obsticle->getPos().y + obsticle->getSize())))
+	{
+		respawnClock.restart();
+		lives--;
+		respawning = true;
+	}
 }

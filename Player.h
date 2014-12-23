@@ -11,6 +11,8 @@ private:
 	sf::Vector2f position;
 	sf::Vector2f speed;
 	int lives;
+	bool respawning;
+	sf::Clock respawnClock;
 	Animation animation;
 	sf::Clock vibrateClock;
 	sf::Vector2f vibrationOffset;
