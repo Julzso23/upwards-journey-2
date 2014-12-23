@@ -8,11 +8,7 @@ void UJ::load()
 	font.loadFromFile("fonts/Frail-Sans.otf");
 
 	std::vector<GUI::Button> buttons;
-	buttons.insert(buttons.end(), GUI::Button("Play", [&]()
-	{
-		setMenu();
-		paused = false;
-	}, &font));
+	buttons.insert(buttons.end(), GUI::Button("Play", [&](){setMenu();}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Options", [&](){setMenu(&optionsMenu);}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Exit", [&](){exit();}, &font));
 	mainMenu.setButtons(buttons);
@@ -99,6 +95,7 @@ void UJ::setMenu()
 {
 	curMenu->hide();
 	paused = false;
+	setCursorVisible(false);
 }
 void UJ::setMenu(GUI::Menu* menu)
 {
@@ -106,4 +103,5 @@ void UJ::setMenu(GUI::Menu* menu)
 	curMenu = menu;
 	curMenu->show();
 	paused = true;
+	setCursorVisible(true);
 }

@@ -17,6 +17,8 @@ public:
 
 	void setResolution(sf::Vector2u size);
 
+	void setCursorVisible(bool visible);
+
 	sf::Vector2i mousePos();
 
 	void exit();

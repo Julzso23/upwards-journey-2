@@ -72,6 +72,11 @@ void Game::setResolution(sf::Vector2u size)
 	window.setSize(size);
 }
 
+void Game::setCursorVisible(bool visible)
+{
+	window.setMouseCursorVisible(visible);
+}
+
 sf::Vector2i Game::mousePos()
 {
 	if (window.getSize().x / 1920.f <= window.getSize().y / 1080.f)
