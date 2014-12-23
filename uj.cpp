@@ -3,8 +3,6 @@
 #include "Axis.h"
 #include "Player.h"
 
-#include <iostream>
-
 void UJ::load()
 {
 	font.loadFromFile("fonts/Frail-Sans.otf");
@@ -33,6 +31,10 @@ void UJ::load()
 	keys.insert(keys.end(), sf::Keyboard::Key::LAlt);
 	keys.insert(keys.end(), sf::Keyboard::Key::F4);
 	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){exit();}));
+
+	keys.clear();
+	keys.insert(keys.end(), sf::Keyboard::Key::Escape);
+	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){setMenu(&mainMenu);}));
 
 	xAxis.create(ControlSet(sf::Keyboard::Right, 0, sf::Joystick::X, true, -1), ControlSet(sf::Keyboard::Left, 0, sf::Joystick::X, false, -1), 0.25);
 	yAxis.create(ControlSet(sf::Keyboard::Down, 0, sf::Joystick::Y, true, -1), ControlSet(sf::Keyboard::Up, 0, sf::Joystick::Y, false, -1), 0.25);
@@ -96,10 +98,12 @@ void UJ::keyReleased(sf::Keyboard::Key key)
 void UJ::setMenu()
 {
 	curMenu->hide();
+	paused = false;
 }
 void UJ::setMenu(GUI::Menu* menu)
 {
 	curMenu->hide();
 	curMenu = menu;
 	curMenu->show();
+	paused = true;
 }
