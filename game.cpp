@@ -2,6 +2,9 @@
 
 Game::Game(sf::String title, sf::VideoMode size, bool fullscreen)
 {
+	this->title = title;
+	this->fullscreen = fullscreen;
+	this->supportedResolutions = sf::VideoMode::getFullscreenModes();
 	if (fullscreen)
 		window.create(sf::VideoMode(size), title, sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
 	else
@@ -75,6 +78,20 @@ void Game::setResolution(sf::Vector2u size)
 void Game::setCursorVisible(bool visible)
 {
 	window.setMouseCursorVisible(visible);
+}
+
+void Game::toggleFullscreen()
+{
+	fullscreen = !fullscreen;
+	if (fullscreen)
+		window.create(sf::VideoMode(window.getSize().x, window.getSize().y), title, sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
+	else
+		window.create(sf::VideoMode(window.getSize().x, window.getSize().y), title, sf::Style::Close | sf::Style::Titlebar);
+}
+
+std::vector<sf::VideoMode> Game::getSupportedResolutions()
+{
+	return supportedResolutions;
 }
 
 sf::Vector2i Game::mousePos()

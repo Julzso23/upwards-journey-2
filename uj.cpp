@@ -2,6 +2,7 @@
 #include "UJ.h"
 #include "Axis.h"
 #include "Player.h"
+#include <iostream>
 
 void UJ::load()
 {
@@ -14,11 +15,29 @@ void UJ::load()
 	mainMenu.setButtons(buttons);
 
 	buttons.clear();
-	buttons.insert(buttons.end(), GUI::Button("Video", [&](){}, &font));
+	buttons.insert(buttons.end(), GUI::Button("Video", [&](){setMenu(&optionsVideoMenu);}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Audio", [&](){}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Controls", [&](){}, &font));
 	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&mainMenu);}, &font));
 	optionsMenu.setButtons(buttons);
+
+	buttons.clear();
+	buttons.insert(buttons.end(), GUI::Button("Resolutions", [&](){setMenu(&optionsVideoResolutionsMenu);}, &font));
+	buttons.insert(buttons.end(), GUI::Button("Toggle Fullscreen", [&](){toggleFullscreen();}, &font));
+	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&optionsMenu);}, &font));
+	optionsVideoMenu.setButtons(buttons);
+
+	buttons.clear();
+	int i = 0;
+	for (i = 0; i < getSupportedResolutions().size(); i++)
+	{
+		std::cout << getSupportedResolutions()[i].width << " x " << getSupportedResolutions()[i].height << std::endl;
+		buttons.insert(buttons.end(), GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&](){
+			setResolution(sf::Vector2u(getSupportedResolutions()[i].width, getSupportedResolutions()[i].height));
+		}, &font));
+	}
+	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&optionsVideoMenu);}, &font));
+	optionsVideoResolutionsMenu.setButtons(buttons);
 
 	curMenu = &mainMenu;
 	curMenu->show();

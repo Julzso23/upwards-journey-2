@@ -7,6 +7,9 @@ class Game
 {
 private:
 	sf::RenderWindow window;
+	sf::String title;
+	bool fullscreen;
+	std::vector<sf::VideoMode> supportedResolutions;
 	sf::Clock time;
 	sf::View camera;
 public:
@@ -18,6 +21,10 @@ public:
 	void setResolution(sf::Vector2u size);
 
 	void setCursorVisible(bool visible);
+
+	void toggleFullscreen();
+
+	std::vector<sf::VideoMode> getSupportedResolutions();
 
 	sf::Vector2i mousePos();
 

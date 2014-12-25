@@ -24,6 +24,8 @@ private:
 
 	GUI::Menu mainMenu;
 	GUI::Menu optionsMenu;
+	GUI::Menu optionsVideoMenu;
+	GUI::Menu optionsVideoResolutionsMenu;
 	GUI::Menu* curMenu;
 
 	std::vector<KeyCommand> keyCommands;
