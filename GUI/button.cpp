@@ -8,7 +8,7 @@ namespace GUI
 	}
 	Button::Button(sf::String text, std::function<void()> func, sf::Font* font)
 	{
-		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(512.f, 128.f));
+		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(1024.f, 128.f));
 		this->text.setFont(*font);
 		setClickFunc(func);
 	}
@@ -40,13 +40,13 @@ namespace GUI
 			if (state != GUI::State::Click)
 			{
 				state = GUI::State::Hover;
-				shape.setFillColor(sf::Color(225, 225, 225, 255));
+				shape.setFillColor(sf::Color(225, 225, 225, 150));
 			}
 		}
 		else
 		{
 			state = GUI::State::Idle;
-			shape.setFillColor(sf::Color(255, 255, 255, 255));
+			shape.setFillColor(sf::Color(255, 255, 255, 150));
 		}
 	}
 
@@ -61,7 +61,7 @@ namespace GUI
 		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Hover))
 		{
 			state = GUI::State::Click;
-			shape.setFillColor(sf::Color(200, 200, 200, 255));
+			shape.setFillColor(sf::Color(200, 200, 200, 150));
 		}
 	}
 	void Button::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
@@ -69,7 +69,7 @@ namespace GUI
 		if ((button == sf::Mouse::Button::Left) && (state == GUI::State::Click))
 		{
 			state = GUI::State::Idle;
-			shape.setFillColor(sf::Color(255, 255, 255, 255));
+			shape.setFillColor(sf::Color(255, 255, 255, 150));
 			onClick();
 		}
 	}
