@@ -64,7 +64,8 @@ void UJ::update(float dt)
 void UJ::draw(sf::RenderWindow* window)
 {
 	window->draw(background.getSprite());
-	window->draw(player.getSprite());
+
+	player.draw(&*window);
 
 	dropper.draw(window);
 

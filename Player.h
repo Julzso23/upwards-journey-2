@@ -14,6 +14,8 @@ private:
 	bool respawning;
 	sf::Clock respawnClock;
 	Animation animation;
+	sf::Texture hatTexure;
+	sf::Sprite hatSprite;
 	sf::Clock vibrateClock;
 	sf::Vector2f vibrationOffset;
 public:
@@ -25,8 +27,9 @@ public:
 
 	void update(float dt);
 
+	void draw(sf::RenderWindow* window);
+
 	sf::Vector2f getPos();
-	sf::Sprite getSprite();
 
 	void isColliding(Obsticle* obsticle);
 };

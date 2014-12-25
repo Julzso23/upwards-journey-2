@@ -115,6 +115,9 @@
     <Image Include="images\heart.png">
       <Filter>Resource Files\images</Filter>
     </Image>
+    <Image Include="images\hats\santa.png">
+      <Filter>Resource Files\images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Frail-Sans.otf">
