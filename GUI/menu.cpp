@@ -17,7 +17,7 @@ namespace GUI
 		this->position = sf::Vector2f(0.f, 0.f);
 		this->buttons = buttons;
 		for (int i = 0; i < this->buttons.size(); i++)
-			this->buttons[i].setPos(sf::Vector2f(0.f, i * 134.f));
+			this->buttons[i].setPos(sf::Vector2f(0.f, i * 70.f));
 		setPos(sf::Vector2f(0.f, 540.f - getHeight() / 2.f));
 	}
 
@@ -61,7 +61,7 @@ namespace GUI
 	{
 		this->position = position;
 		for (int i = 0; i < this->buttons.size(); i++)
-			this->buttons[i].setPos(sf::Vector2f(this->position.x, this->position.y + i * 134.f));
+			this->buttons[i].setPos(sf::Vector2f(this->position.x, this->position.y + i * 70.f));
 	}
 	sf::Vector2f Menu::getPos()
 	{
@@ -70,6 +70,6 @@ namespace GUI
 
 	int Menu::getHeight()
 	{
-		return buttons.size() * 128 + (buttons.size() - 1) * 6;
+		return buttons.size() * 64 + (buttons.size() - 1) * 6;
 	}
 }
