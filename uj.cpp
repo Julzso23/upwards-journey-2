@@ -31,8 +31,7 @@ void UJ::load()
 	int i = 0;
 	for (i = 0; i < getSupportedResolutions().size(); i++)
 	{
-		std::cout << getSupportedResolutions()[i].width << " x " << getSupportedResolutions()[i].height << std::endl;
-		buttons.insert(buttons.end(), GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&](){
+		buttons.insert(buttons.end(), GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&, i](){
 			setResolution(sf::Vector2u(getSupportedResolutions()[i].width, getSupportedResolutions()[i].height));
 		}, &font));
 	}
