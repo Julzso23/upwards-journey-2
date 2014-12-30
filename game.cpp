@@ -72,7 +72,10 @@ void Game::render(const sf::Drawable &drawable)
 
 void Game::setResolution(sf::Vector2u size)
 {
-	window.setSize(size);
+	if (fullscreen)
+		window.create(sf::VideoMode(size.x, size.y), title, sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
+	else
+		window.create(sf::VideoMode(size.x, size.y), title, sf::Style::Close | sf::Style::Titlebar);
 }
 
 void Game::setCursorVisible(bool visible)
