@@ -30,7 +30,7 @@ namespace GUI
 		void setPos(sf::Vector2f position);
 		sf::Vector2f getPos();
 
-		int getHeight();
+		float getHeight();
 	};
 }
 

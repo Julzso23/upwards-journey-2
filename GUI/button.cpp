@@ -89,4 +89,16 @@ namespace GUI
 	{
 		return shape.getPosition();
 	}
+
+	void Button::setSize(sf::Vector2f size)
+	{
+		sf::Vector2f position = shape.getPosition();
+		this->shape.setSize(size);
+		this->text.setCharacterSize(static_cast<int>(floor(size.y)) - 16);
+		this->text.setPosition(sf::Vector2f(position.x + (size.x / 2) - (this->text.getLocalBounds().width / 2), position.y + (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
+	}
+	sf::Vector2f Button::getSize()
+	{
+		return shape.getSize();
+	}
 }
