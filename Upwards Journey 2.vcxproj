@@ -25,6 +25,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Base.h" />
     <ClInclude Include="GUI\Button.h" />
+    <ClInclude Include="GUI\Dropdown.h" />
     <ClInclude Include="GUI\Menu.h" />
     <ClInclude Include="KeyCommand.h" />
     <ClInclude Include="Obsticle.h" />
@@ -39,6 +40,7 @@
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GUI\base.cpp" />
     <ClCompile Include="GUI\button.cpp" />
+    <ClCompile Include="GUI\dropdown.cpp" />
     <ClCompile Include="GUI\menu.cpp" />
     <ClCompile Include="keyCommand.cpp" />
     <ClCompile Include="main.cpp" />
