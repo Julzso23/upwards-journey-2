@@ -27,6 +27,7 @@
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\Dropdown.h" />
     <ClInclude Include="GUI\Menu.h" />
+    <ClInclude Include="HUD.h" />
     <ClInclude Include="KeyCommand.h" />
     <ClInclude Include="Obsticle.h" />
     <ClInclude Include="ObsticleDropper.h" />
@@ -42,6 +43,7 @@
     <ClCompile Include="GUI\button.cpp" />
     <ClCompile Include="GUI\dropdown.cpp" />
     <ClCompile Include="GUI\menu.cpp" />
+    <ClCompile Include="hud.cpp" />
     <ClCompile Include="keyCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="obsticle.cpp" />

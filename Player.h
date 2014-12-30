@@ -32,6 +32,8 @@ public:
 	sf::Vector2f getPos();
 
 	void isColliding(Obsticle* obsticle);
+
+	int getLives();
 };
 
 #endif

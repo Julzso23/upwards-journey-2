@@ -9,6 +9,7 @@
 #include "GUI\Menu.h"
 #include "ObsticleDropper.h"
 #include "KeyCommand.h"
+#include "HUD.h"
 
 class UJ : public Game
 {
@@ -18,6 +19,8 @@ private:
 	Axis yAxis;
 
 	Background background;
+
+	HUD hud;
 
 	ObsticleDropper dropper;
 	std::vector<Obsticle>* obsticles;

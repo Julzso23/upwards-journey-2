@@ -56,6 +56,8 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
+	hud.setPlayer(&player);
+
 	paused = true;
 }
 
@@ -64,6 +66,8 @@ void UJ::update(float dt)
 	player.update(dt);
 
 	background.update(dt);
+
+	hud.update();
 
 	if (!paused)
 	{
@@ -83,11 +87,13 @@ void UJ::draw(sf::RenderWindow* window)
 {
 	window->draw(background.getSprite());
 
-	player.draw(&*window);
+	player.draw(window);
 
 	dropper.draw(window);
 
-	curMenu->draw(&*window);
+	hud.draw(window);
+
+	curMenu->draw(window);
 }
 
 void UJ::mousePressed(sf::Mouse::Button button, sf::Vector2i position)

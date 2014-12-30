@@ -93,3 +93,8 @@ void Player::isColliding(Obsticle* obsticle)
 		respawning = true;
 	}
 }
+
+int Player::getLives()
+{
+	return lives;
+}
