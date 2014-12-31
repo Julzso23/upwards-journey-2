@@ -12,6 +12,9 @@ private:
 	sf::Sprite hearts[5];
 	sf::Clock heartFlashClock;
 
+	sf::Text gameOverText;
+	sf::Font HUDFont;
+
 	Player* player;
 public:
 	HUD();
