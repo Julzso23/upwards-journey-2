@@ -10,6 +10,7 @@ class HUD
 private:
 	sf::Texture heartTexure;
 	sf::Sprite hearts[5];
+	sf::Clock heartFlashClock;
 
 	Player* player;
 public:
