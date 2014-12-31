@@ -90,6 +90,8 @@ void Player::isColliding(Obsticle* obsticle)
 	{
 		respawnClock.restart();
 		lives--;
+		if (lives < 0)
+			lives = 0;
 		respawning = true;
 	}
 }
