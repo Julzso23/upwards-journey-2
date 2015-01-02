@@ -15,19 +15,7 @@ Player::Player()
 	hatTexure.loadFromFile("images/hats/santa.png");
 	hatSprite.setTexture(hatTexure);
 	hatSprite.setOrigin(sf::Vector2f(13.f, 66.f));
-}
-Player::Player(float x, float y)
-{
-	position = sf::Vector2f(x, y);
-	animation.setPos(position);
-	speed = sf::Vector2f(400, 0);
-	lives = 3;
-	respawning = false;
-	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
-	vibrationOffset = sf::Vector2f(0, 0);
-	hatTexure.loadFromFile("images/hats/santa.png");
-	hatSprite.setTexture(hatTexure);
-	hatSprite.setOrigin(sf::Vector2f(13.f, -46.f));
+	score = 0;
 }
 
 void Player::move(sf::Vector2f direction, float dt)
@@ -39,16 +27,6 @@ void Player::move(sf::Vector2f direction, float dt)
 	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
 	animation.setRot(direction.x * 25.f);
 	hatSprite.setRotation(direction.x * 25.f);
-}
-void Player::move(float mod, float arg, float dt)
-{
-	position.x += speed.x * mod * cosf(arg) * dt;
-	position.y += speed.y * mod * sinf(arg) * dt;
-	if (position.x > 1920.f) position.x = 1920.f;
-	if (position.x < 0.f) position.x = 0.f;
-	animation.setPos(position);
-	animation.setRot(arg);
-	hatSprite.setRotation(arg);
 }
 
 void Player::update(float dt)

@@ -18,12 +18,11 @@ private:
 	sf::Sprite hatSprite;
 	sf::Clock vibrateClock;
 	sf::Vector2f vibrationOffset;
+	int score;
 public:
 	Player();
-	Player(float x, float y);
 
 	void move(sf::Vector2f direction, float dt);
-	void move(float mod, float arg, float dt);
 
 	void update(float dt);
 
