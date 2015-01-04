@@ -14,14 +14,16 @@ namespace Pickups
 		sf::Sprite sprite;
 	public:
 		Pickup();
-		Pickup(sf::Vector2f position);
 
 		bool drop(float dt);
 		void draw(sf::RenderWindow* window);
 
 		void setTexture(sf::String fileName);
 
-		virtual void onCollect(Player* player);
+		void setPos(sf::Vector2f position);
+		sf::Vector2f getPos();
+
+		virtual void onCollect(Player* player) = 0;
 	};
 }
 

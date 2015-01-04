@@ -25,6 +25,18 @@
     <Filter Include="Resource Files\fonts">
       <UniqueIdentifier>{f789b042-7230-4022-8a11-7d78b6f517a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Pickups">
+      <UniqueIdentifier>{4d51779b-911a-4240-8488-ce9ecc6d14b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Pickups">
+      <UniqueIdentifier>{0f16ff13-b2ce-493e-88b2-73e212672811}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\hats">
+      <UniqueIdentifier>{352cdb75-46a0-456e-a138-c06bc72566e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\images\pickups">
+      <UniqueIdentifier>{7ec9ff72-38c7-4b15-8891-c4d994b133c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Axis.h">
@@ -68,6 +80,12 @@
     </ClInclude>
     <ClInclude Include="HUD.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pickups\Pickup.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="pickups\Health.h">
+      <Filter>Header Files\Pickups</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +134,12 @@
     <ClCompile Include="hud.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pickups\pickup.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="pickups\health.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="images\player.png">
@@ -128,7 +152,7 @@
       <Filter>Resource Files\images</Filter>
     </Image>
     <Image Include="images\hats\santa.png">
-      <Filter>Resource Files\images</Filter>
+      <Filter>Resource Files\images\hats</Filter>
     </Image>
   </ItemGroup>
   <ItemGroup>

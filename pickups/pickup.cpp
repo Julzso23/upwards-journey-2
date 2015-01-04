@@ -6,11 +6,6 @@ namespace Pickups
 	{
 		sprite.setTexture(texture);
 	}
-	Pickup::Pickup(sf::Vector2f position)
-	{
-		this->position = position;
-		sprite.setTexture(texture);
-	}
 
 	bool Pickup::drop(float dt)
 	{
@@ -29,5 +24,14 @@ namespace Pickups
 	void Pickup::setTexture(sf::String fileName)
 	{
 		texture.loadFromFile("images/pickups/" + fileName + ".png");
+	}
+
+	void Pickup::setPos(sf::Vector2f position)
+	{
+		this->position = position;
+	}
+	sf::Vector2f Pickup::getPos()
+	{
+		return position;
 	}
 }

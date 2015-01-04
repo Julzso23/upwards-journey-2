@@ -4,7 +4,7 @@ namespace Pickups
 {
 	Health::Health(sf::Vector2f position, int worth)
 	{
-		Pickup(position);
+		setPos(position);
 		setTexture("health");
 		this->worth = worth;
 	}
