@@ -78,3 +78,9 @@ int Player::getLives()
 {
 	return lives;
 }
+void Player::addLives(int num)
+{
+	lives += abs(num);
+	if (lives > 5)
+		lives = 5;
+}

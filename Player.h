@@ -33,6 +33,7 @@ public:
 	void isColliding(Obsticle* obsticle);
 
 	int getLives();
+	void addLives(int num);
 };
 
 #endif
