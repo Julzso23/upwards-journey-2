@@ -56,6 +56,8 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
+	pickups.insert(pickups.end(), Pickups::Health(sf::Vector2f(64.f, 64.f), 1));
+
 	hud.setPlayer(&player);
 
 	paused = true;
@@ -75,6 +77,12 @@ void UJ::update(float dt)
 		for (int i = 0; i < obsticles->size(); i++)
 			player.isColliding(&(*obsticles)[i]);
 
+		for (int i = 0; i < pickups.size(); i++)
+		{
+			pickups[i].drop(dt);
+			pickups[i].isColliding(&player);
+		}
+
 		dropper.update(dt);
 	}
 	else
@@ -88,6 +96,9 @@ void UJ::draw(sf::RenderWindow* window)
 	window->draw(background.getSprite());
 
 	player.draw(window);
+
+	for (int i = 0; i < pickups.size(); i++)
+		pickups[i].draw(window);
 
 	dropper.draw(window);
 

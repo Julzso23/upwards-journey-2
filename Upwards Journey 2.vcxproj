@@ -59,6 +59,7 @@
     <Image Include="images\background.png" />
     <Image Include="images\hats\santa.png" />
     <Image Include="images\heart.png" />
+    <Image Include="images\pickups\health.png" />
     <Image Include="images\player.png" />
   </ItemGroup>
   <ItemGroup>

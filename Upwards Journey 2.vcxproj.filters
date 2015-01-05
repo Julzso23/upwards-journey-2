@@ -154,6 +154,9 @@
     <Image Include="images\hats\santa.png">
       <Filter>Resource Files\images\hats</Filter>
     </Image>
+    <Image Include="images\pickups\health.png">
+      <Filter>Resource Files\images\pickups</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Frail-Sans.otf">
