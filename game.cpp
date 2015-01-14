@@ -13,6 +13,8 @@ Game::Game(sf::String title, sf::VideoMode size, bool fullscreen)
 
 void Game::run()
 {
+	window.setFramerateLimit(200);
+
 	camera.reset(sf::FloatRect(0, 0, 1920, 1080));
 
 	load();
