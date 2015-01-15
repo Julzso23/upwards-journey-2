@@ -18,7 +18,9 @@ namespace Pickups
 		bool drop(float dt);
 		void draw(sf::RenderWindow* window);
 
-		void setTexture(sf::String fileName);
+		void setTexture(sf::String name);
+
+		sf::Sprite* getSprite();
 
 		void setPos(sf::Vector2f position);
 		sf::Vector2f getPos();

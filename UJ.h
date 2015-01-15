@@ -10,7 +10,7 @@
 #include "ObsticleDropper.h"
 #include "KeyCommand.h"
 #include "HUD.h"
-#include "pickups\Health.h"
+#include "pickups\PickupDropper.h"
 
 class UJ : public Game
 {
@@ -26,7 +26,7 @@ private:
 	ObsticleDropper dropper;
 	std::vector<Obsticle>* obsticles;
 
-	std::vector<Pickups::Health> pickups;
+	PickupDropper<Pickups::Health> pickupDropper;
 
 	GUI::Menu mainMenu;
 	GUI::Menu optionsMenu;

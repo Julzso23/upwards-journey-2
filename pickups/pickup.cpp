@@ -1,16 +1,19 @@
 #include "Pickup.h"
+#include <iostream>
 
 namespace Pickups
 {
 	Pickup::Pickup()
 	{
-		sprite.setTexture(texture);
+		sprite.setScale(0.75f, 0.75f);
+		sprite.setOrigin(32.f, 32.f);
 	}
 
 	bool Pickup::drop(float dt)
 	{
-		position.y += 800.f * dt;
+		position.y += 600.f * dt;
 		sprite.setPosition(position);
+		sprite.rotate(360.f * dt);
 		if (position.y > 1080.f)
 			return true;
 		return false;
@@ -21,10 +24,17 @@ namespace Pickups
 		window->draw(sprite);
 	}
 
-	void Pickup::setTexture(sf::String fileName)
+	void Pickup::setTexture(sf::String name)
 	{
-		texture.loadFromFile("images/pickups/" + fileName + ".png");
-		sprite.setTexture(texture);
+		if (!texture.loadFromFile("images/pickups/" + name + ".png"))
+			std::cout << "Error loading image: images/pickups/" + name.toAnsiString() + ".png" << std::endl;
+		else
+			sprite.setTexture(texture);
+	}
+
+	sf::Sprite* Pickup::getSprite()
+	{
+		return &sprite;
 	}
 
 	void Pickup::setPos(sf::Vector2f position)

@@ -5,13 +5,17 @@
 
 namespace Pickups
 {
-	class Health : public Pickup
+	class Health : public Pickups::Pickup
 	{
 	private:
 		int worth;
+		bool initialised;
 	public:
+		Health();
 		Health(sf::Vector2f position, int worth);
+		void create(sf::Vector2f position, int worth);
 		void onCollect(Player* player);
+		bool isInitialised();
 	};
 }
 

@@ -28,8 +28,7 @@ void UJ::load()
 	optionsVideoMenu.setButtons(buttons);
 
 	buttons.clear();
-	int i = 0;
-	for (i = 0; i < getSupportedResolutions().size(); i++)
+	for (int i = 0; i < getSupportedResolutions().size(); i++)
 	{
 		buttons.insert(buttons.end(), GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&, i](){
 			setResolution(sf::Vector2u(getSupportedResolutions()[i].width, getSupportedResolutions()[i].height));
@@ -56,7 +55,7 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
-	pickups.insert(pickups.end(), Pickups::Health(sf::Vector2f(64.f, 64.f), 1));
+	pickupDropper.create(2.f);
 
 	hud.setPlayer(&player);
 
@@ -77,13 +76,9 @@ void UJ::update(float dt)
 		for (int i = 0; i < obsticles->size(); i++)
 			player.isColliding(&(*obsticles)[i]);
 
-		for (int i = 0; i < pickups.size(); i++)
-		{
-			pickups[i].drop(dt);
-			pickups[i].isColliding(&player);
-		}
-
 		dropper.update(dt);
+
+		pickupDropper.update(dt, &player);
 	}
 	else
 	{
@@ -97,8 +92,7 @@ void UJ::draw(sf::RenderWindow* window)
 
 	player.draw(window);
 
-	for (int i = 0; i < pickups.size(); i++)
-		pickups[i].draw(window);
+	pickupDropper.draw(window);
 
 	dropper.draw(window);
 
