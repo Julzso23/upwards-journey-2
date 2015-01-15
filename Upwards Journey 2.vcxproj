@@ -33,6 +33,7 @@
     <ClInclude Include="ObsticleDropper.h" />
     <ClInclude Include="pickups\Health.h" />
     <ClInclude Include="pickups\Pickup.h" />
+    <ClInclude Include="pickups\PickupDropper.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="UJ.h" />
   </ItemGroup>
@@ -52,6 +53,7 @@
     <ClCompile Include="obsticleDropper.cpp" />
     <ClCompile Include="pickups\health.cpp" />
     <ClCompile Include="pickups\pickup.cpp" />
+    <ClCompile Include="pickups\pickupDropper.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="uj.cpp" />
   </ItemGroup>

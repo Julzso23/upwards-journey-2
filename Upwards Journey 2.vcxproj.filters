@@ -87,6 +87,9 @@
     <ClInclude Include="pickups\Health.h">
       <Filter>Header Files\Pickups</Filter>
     </ClInclude>
+    <ClInclude Include="pickups\PickupDropper.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="axis.cpp">
@@ -138,6 +141,9 @@
       <Filter>Source Files\Pickups</Filter>
     </ClCompile>
     <ClCompile Include="pickups\health.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="pickups\pickupDropper.cpp">
       <Filter>Source Files\Pickups</Filter>
     </ClCompile>
   </ItemGroup>
