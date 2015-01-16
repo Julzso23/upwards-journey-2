@@ -11,10 +11,11 @@ class PickupDropper
 private:
 	sf::Clock timer;
 	float dropRate;
+	sf::Texture texture;
 	std::vector<T> pickups;
 public:
 	PickupDropper();
-	void create(float dropRate);
+	void create(float dropRate, sf::String textureName);
 	void update(float dt, Player* player);
 	void draw(sf::RenderWindow* window);
 	std::vector<T>* getPickups();

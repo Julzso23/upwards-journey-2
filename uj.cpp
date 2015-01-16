@@ -55,7 +55,7 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
-	pickupDropper.create(2.f);
+	healthDropper.create(2.f, "health");
 
 	hud.setPlayer(&player);
 
@@ -78,7 +78,7 @@ void UJ::update(float dt)
 
 		dropper.update(dt);
 
-		pickupDropper.update(dt, &player);
+		healthDropper.update(dt, &player);
 	}
 	else
 	{
@@ -92,7 +92,7 @@ void UJ::draw(sf::RenderWindow* window)
 
 	player.draw(window);
 
-	pickupDropper.draw(window);
+	healthDropper.draw(window);
 
 	dropper.draw(window);
 

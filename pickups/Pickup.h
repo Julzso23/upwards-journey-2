@@ -10,7 +10,6 @@ namespace Pickups
 	{
 	private:
 		sf::Vector2f position;
-		sf::Texture texture;
 		sf::Sprite sprite;
 	public:
 		Pickup();
@@ -18,7 +17,7 @@ namespace Pickups
 		bool drop(float dt);
 		void draw(sf::RenderWindow* window);
 
-		void setTexture(sf::String name);
+		void setTexture(sf::Texture* texture);
 
 		sf::Sprite* getSprite();
 

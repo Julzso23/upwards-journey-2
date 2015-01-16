@@ -24,12 +24,9 @@ namespace Pickups
 		window->draw(sprite);
 	}
 
-	void Pickup::setTexture(sf::String name)
+	void Pickup::setTexture(sf::Texture* texture)
 	{
-		if (!texture.loadFromFile("images/pickups/" + name + ".png"))
-			std::cout << "Error loading image: images/pickups/" + name.toAnsiString() + ".png" << std::endl;
-		else
-			sprite.setTexture(texture);
+		sprite.setTexture(*texture);
 	}
 
 	sf::Sprite* Pickup::getSprite()

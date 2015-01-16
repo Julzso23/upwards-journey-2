@@ -26,7 +26,7 @@ private:
 	ObsticleDropper dropper;
 	std::vector<Obsticle>* obsticles;
 
-	PickupDropper<Pickups::Health> pickupDropper;
+	PickupDropper<Pickups::Health> healthDropper;
 
 	GUI::Menu mainMenu;
 	GUI::Menu optionsMenu;
