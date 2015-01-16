@@ -29,6 +29,7 @@ private:
 	PickupDropper<Pickups::Health> healthDropper;
 
 	GUI::Menu mainMenu;
+	GUI::Menu hatsMenu;
 	GUI::Menu optionsMenu;
 	GUI::Menu optionsVideoMenu;
 	GUI::Menu optionsVideoResolutionsMenu;

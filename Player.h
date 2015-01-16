@@ -34,6 +34,8 @@ public:
 
 	int getLives();
 	void addLives(int num);
+
+	void setHat(sf::String name);
 };
 
 #endif

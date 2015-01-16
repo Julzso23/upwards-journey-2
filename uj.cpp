@@ -9,8 +9,14 @@ void UJ::load()
 	font.loadFromFile("fonts/Frail-Sans.otf");
 
 	mainMenu.addButton(GUI::Button("Play", [&](){setMenu(); }, &font));
+	mainMenu.addButton(GUI::Button("Hats", [&](){setMenu(&hatsMenu); }, &font));
 	mainMenu.addButton(GUI::Button("Options", [&](){setMenu(&optionsMenu); }, &font));
 	mainMenu.addButton(GUI::Button("Exit", [&](){exit(); }, &font));
+
+	hatsMenu.addButton(GUI::Button("None", [&](){player.setHat(""); }, &font));
+	hatsMenu.addButton(GUI::Button("Top hat", [&](){player.setHat("top"); }, &font));
+	hatsMenu.addButton(GUI::Button("Santa hat", [&](){player.setHat("santa"); }, &font));
+	hatsMenu.addButton(GUI::Button("Back", [&](){setMenu(&mainMenu); }, &font));
 
 	optionsMenu.addButton(GUI::Button("Video", [&](){setMenu(&optionsVideoMenu); }, &font));
 	optionsMenu.addButton(GUI::Button("Audio", [&](){}, &font));

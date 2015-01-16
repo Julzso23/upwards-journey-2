@@ -12,9 +12,8 @@ Player::Player()
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
 	animation.setScale(sf::Vector2f(2.f, 2.f));
 	vibrationOffset = sf::Vector2f(0, 0);
-	hatTexure.loadFromFile("images/hats/santa.png");
 	hatSprite.setTexture(hatTexure);
-	hatSprite.setOrigin(sf::Vector2f(13.f, 66.f));
+	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2, hatTexure.getSize().y / 2 + 56.f));
 	score = 0;
 }
 
@@ -54,7 +53,7 @@ void Player::update(float dt)
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	target.draw(animation, states);
-	//window->draw(hatSprite);
+	target.draw(hatSprite);
 }
 
 sf::Vector2f Player::getPos()
@@ -83,4 +82,15 @@ void Player::addLives(int num)
 	lives += abs(num);
 	if (lives > 5)
 		lives = 5;
+}
+
+void Player::setHat(sf::String name)
+{
+	if (name == "")
+		hatTexure = sf::Texture();
+	else
+		hatTexure.loadFromFile("images/hats/" + name + ".png");
+	hatSprite = sf::Sprite();
+	hatSprite.setTexture(hatTexure);
+	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2, hatTexure.getSize().y / 2 + 56.f));
 }
