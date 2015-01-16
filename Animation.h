@@ -3,7 +3,7 @@
 
 #include <SFML\Graphics.hpp>
 
-class Animation
+class Animation : public sf::Drawable
 {
 private:
 	sf::Clock clock;
@@ -14,6 +14,8 @@ private:
 	int frames;
 	int frame;
 	sf::IntRect frameRect;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	Animation();
 	Animation(sf::String texturePath, float period, int frames, sf::Vector2i frameSize, int minFrame = 0);

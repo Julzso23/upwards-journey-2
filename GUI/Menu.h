@@ -6,12 +6,14 @@
 
 namespace GUI
 {
-	class Menu
+	class Menu : public sf::Drawable
 	{
 	private:
 		std::vector<Button> buttons;
 		sf::Vector2f position;
 		bool enabled;
+
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	public:
 		Menu();
 		Menu(std::vector<Button> buttons);
@@ -21,8 +23,6 @@ namespace GUI
 		void hide();
 
 		void update(float dt, sf::Vector2i mousePos);
-
-		void draw(sf::RenderWindow* window);
 
 		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
 		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);

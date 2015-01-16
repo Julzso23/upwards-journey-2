@@ -5,7 +5,7 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 
-class ObsticleDropper
+class ObsticleDropper : public sf::Drawable
 {
 private:
 	sf::Clock timer;
@@ -13,12 +13,13 @@ private:
 	int minSize;
 	int maxSize;
 	std::vector<Obsticle> obsticles;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	ObsticleDropper();
 	ObsticleDropper(float rate, int minSize, int maxSize);
 	void create(float rate, int minSize, int maxSize);
 	void update(float dt);
-	void draw(sf::RenderWindow* window);
 	std::vector<Obsticle>* getObsticles();
 };
 

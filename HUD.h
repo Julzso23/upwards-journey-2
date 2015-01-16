@@ -5,7 +5,7 @@
 #include <vector>
 #include "Player.h"
 
-class HUD
+class HUD : public sf::Drawable
 {
 private:
 	sf::Texture heartTexure;
@@ -16,11 +16,12 @@ private:
 	sf::Font HUDFont;
 
 	Player* player;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	HUD();
 	void setPlayer(Player* player);
 	void update();
-	void draw(sf::RenderWindow* window);
 };
 
 #endif

@@ -5,7 +5,7 @@
 #include "Animation.h"
 #include "Obsticle.h"
 
-class Player
+class Player : public sf::Drawable
 {
 private:
 	sf::Vector2f position;
@@ -19,14 +19,14 @@ private:
 	sf::Clock vibrateClock;
 	sf::Vector2f vibrationOffset;
 	int score;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	Player();
 
 	void move(sf::Vector2f direction, float dt);
 
 	void update(float dt);
-
-	void draw(sf::RenderWindow* window);
 
 	sf::Vector2f getPos();
 

@@ -20,9 +20,9 @@ bool Obsticle::drop(float dt)
 	return false;
 }
 
-void Obsticle::draw(sf::RenderWindow* window)
+void Obsticle::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	window->draw(shape);
+	target.draw(shape);
 }
 
 sf::Vector2f Obsticle::getPos()

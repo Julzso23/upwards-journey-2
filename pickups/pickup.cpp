@@ -19,9 +19,9 @@ namespace Pickups
 		return false;
 	}
 
-	void Pickup::draw(sf::RenderWindow* window)
+	void Pickup::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		window->draw(sprite);
+		target.draw(sprite, states);
 	}
 
 	void Pickup::setTexture(sf::Texture* texture)

@@ -6,18 +6,19 @@
 #include "Health.h"
 
 template <class T>
-class PickupDropper
+class PickupDropper : public sf::Drawable
 {
 private:
 	sf::Clock timer;
 	float dropRate;
 	sf::Texture texture;
 	std::vector<T> pickups;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	PickupDropper();
 	void create(float dropRate, sf::String textureName);
 	void update(float dt, Player* player);
-	void draw(sf::RenderWindow* window);
 	std::vector<T>* getPickups();
 };
 

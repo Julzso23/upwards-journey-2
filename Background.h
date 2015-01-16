@@ -3,14 +3,15 @@
 
 #include <SFML\Graphics.hpp>
 
-class Background
+class Background : public sf::Drawable
 {
 private:
 	sf::Texture texture;
 	sf::Sprite sprite;
+
+	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
 	Background();
-	sf::Sprite getSprite();
 	void update(float dt);
 };
 

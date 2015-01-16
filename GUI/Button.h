@@ -13,6 +13,8 @@ namespace GUI
 		sf::Text text;
 		GUI::State state;
 		std::function<void()> onClick;
+
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	public:
 		Button();
 		Button(sf::String text, std::function<void()> func, sf::Font* font);
@@ -20,8 +22,6 @@ namespace GUI
 		void create(sf::String text, sf::Vector2f position, sf::Vector2f size);
 
 		void update(float dt, sf::Vector2i mousePos);
-
-		void draw(sf::RenderWindow* window);
 
 		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
 		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);

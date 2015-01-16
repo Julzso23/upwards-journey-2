@@ -31,10 +31,10 @@ void ObsticleDropper::update(float dt)
 	}
 }
 
-void ObsticleDropper::draw(sf::RenderWindow* window)
+void ObsticleDropper::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int i = 0; i < obsticles.size(); i++)
-		obsticles[i].draw(window);
+		target.draw(obsticles[i]);
 }
 
 std::vector<Obsticle>* ObsticleDropper::getObsticles()

@@ -83,17 +83,17 @@ void UJ::update(float dt)
 
 void UJ::draw(sf::RenderWindow* window)
 {
-	window->draw(background.getSprite());
+	window->draw(background);
 
-	player.draw(window);
+	window->draw(player);
 
-	healthDropper.draw(window);
+	window->draw(healthDropper);
 
-	dropper.draw(window);
+	window->draw(dropper);
 
-	hud.draw(window);
+	window->draw(hud);
 
-	curMenu->draw(window);
+	window->draw(*curMenu);
 }
 
 void UJ::mousePressed(sf::Mouse::Button button, sf::Vector2i position)

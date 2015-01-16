@@ -43,11 +43,11 @@ namespace GUI
 				buttons[i].update(dt, mousePos);
 	}
 
-	void Menu::draw(sf::RenderWindow* window)
+	void Menu::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		if (enabled)
 			for (int i = 0; i < buttons.size(); i++)
-				buttons[i].draw(&*window);
+				target.draw(buttons[i]);
 	}
 
 	void Menu::mousePressed(sf::Mouse::Button button, sf::Vector2i position)

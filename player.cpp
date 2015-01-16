@@ -51,10 +51,10 @@ void Player::update(float dt)
 	}
 }
 
-void Player::draw(sf::RenderWindow* window)
+void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	window->draw(animation.getSprite());
-	window->draw(hatSprite);
+	target.draw(animation, states);
+	//window->draw(hatSprite);
 }
 
 sf::Vector2f Player::getPos()

@@ -41,6 +41,11 @@ sf::Sprite Animation::getSprite()
 	return sprite;
 }
 
+void Animation::draw(sf::RenderTarget& target, sf::RenderStates states) const
+{
+	target.draw(sprite, states);
+}
+
 void Animation::update(float dt)
 {
 	if (clock.getElapsedTime().asSeconds() >= period)

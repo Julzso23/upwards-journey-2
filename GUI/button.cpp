@@ -50,10 +50,10 @@ namespace GUI
 		}
 	}
 
-	void Button::draw(sf::RenderWindow* window)
+	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		window->draw(shape);
-		window->draw(text);
+		target.draw(shape);
+		target.draw(text);
 	}
 
 	void Button::mousePressed(sf::Mouse::Button button, sf::Vector2i position)

@@ -44,10 +44,10 @@ void HUD::update()
 	}
 }
 
-void HUD::draw(sf::RenderWindow* window)
+void HUD::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int i = 0; i < 5; i++)
-		window->draw(hearts[i]);
+		target.draw(hearts[i]);
 	if (player->getLives() == 0)
-		window->draw(gameOverText);
+		target.draw(gameOverText);
 }

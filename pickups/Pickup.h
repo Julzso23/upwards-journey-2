@@ -6,16 +6,17 @@
 
 namespace Pickups
 {
-	class Pickup
+	class Pickup : public sf::Drawable
 	{
 	private:
 		sf::Vector2f position;
 		sf::Sprite sprite;
+
+		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	public:
 		Pickup();
 
 		bool drop(float dt);
-		void draw(sf::RenderWindow* window);
 
 		void setTexture(sf::Texture* texture);
 

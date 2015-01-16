@@ -27,10 +27,10 @@ void PickupDropper<T>::update(float dt, Player* player)
 }
 
 template <class T>
-void PickupDropper<T>::draw(sf::RenderWindow* window)
+void PickupDropper<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	for (int i = 0; i < pickups.size(); i++)
-		pickups[i].draw(window);
+		target.draw(pickups[i]);
 }
 
 template <class T>
