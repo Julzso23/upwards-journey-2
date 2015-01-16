@@ -8,34 +8,26 @@ void UJ::load()
 {
 	font.loadFromFile("fonts/Frail-Sans.otf");
 
-	std::vector<GUI::Button> buttons;
-	buttons.insert(buttons.end(), GUI::Button("Play", [&](){setMenu();}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Options", [&](){setMenu(&optionsMenu);}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Exit", [&](){exit();}, &font));
-	mainMenu.setButtons(buttons);
+	mainMenu.addButton(GUI::Button("Play", [&](){setMenu(); }, &font));
+	mainMenu.addButton(GUI::Button("Options", [&](){setMenu(&optionsMenu); }, &font));
+	mainMenu.addButton(GUI::Button("Exit", [&](){exit(); }, &font));
 
-	buttons.clear();
-	buttons.insert(buttons.end(), GUI::Button("Video", [&](){setMenu(&optionsVideoMenu);}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Audio", [&](){}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Controls", [&](){}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&mainMenu);}, &font));
-	optionsMenu.setButtons(buttons);
+	optionsMenu.addButton(GUI::Button("Video", [&](){setMenu(&optionsVideoMenu); }, &font));
+	optionsMenu.addButton(GUI::Button("Audio", [&](){}, &font));
+	optionsMenu.addButton(GUI::Button("Controls", [&](){}, &font));
+	optionsMenu.addButton(GUI::Button("Back", [&](){setMenu(&mainMenu); }, &font));
 
-	buttons.clear();
-	buttons.insert(buttons.end(), GUI::Button("Resolutions", [&](){setMenu(&optionsVideoResolutionsMenu);}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Toggle Fullscreen", [&](){toggleFullscreen();}, &font));
-	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&optionsMenu);}, &font));
-	optionsVideoMenu.setButtons(buttons);
+	optionsVideoMenu.addButton(GUI::Button("Resolutions", [&](){setMenu(&optionsVideoResolutionsMenu); }, &font));
+	optionsVideoMenu.addButton(GUI::Button("Toggle Fullscreen", [&](){toggleFullscreen(); }, &font));
+	optionsVideoMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsMenu); }, &font));
 
-	buttons.clear();
 	for (int i = 0; i < getSupportedResolutions().size(); i++)
 	{
-		buttons.insert(buttons.end(), GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&, i](){
+		optionsVideoResolutionsMenu.addButton(GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&, i](){
 			setResolution(sf::Vector2u(getSupportedResolutions()[i].width, getSupportedResolutions()[i].height));
 		}, &font));
 	}
-	buttons.insert(buttons.end(), GUI::Button("Back", [&](){setMenu(&optionsVideoMenu);}, &font));
-	optionsVideoResolutionsMenu.setButtons(buttons);
+	optionsVideoResolutionsMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsVideoMenu); }, &font));
 
 	curMenu = &mainMenu;
 	curMenu->show();

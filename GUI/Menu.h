@@ -17,7 +17,9 @@ namespace GUI
 	public:
 		Menu();
 		Menu(std::vector<Button> buttons);
+
 		void setButtons(std::vector<Button> buttons);
+		void addButton(Button button);
 
 		void show();
 		void hide();
