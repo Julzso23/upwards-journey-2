@@ -41,11 +41,6 @@ void UJ::load()
 	curMenu->show();
 
 	std::vector<sf::Keyboard::Key> keys;
-	keys.insert(keys.end(), sf::Keyboard::Key::LAlt);
-	keys.insert(keys.end(), sf::Keyboard::Key::F4);
-	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){exit();}));
-
-	keys.clear();
 	keys.insert(keys.end(), sf::Keyboard::Key::Escape);
 	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){setMenu(&mainMenu);}));
 
