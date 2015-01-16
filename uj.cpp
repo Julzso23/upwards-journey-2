@@ -55,7 +55,7 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
-	healthDropper.create(2.f, "health");
+	healthDropper.create(0.4f, "health");
 
 	hud.setPlayer(&player);
 

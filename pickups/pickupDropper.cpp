@@ -21,8 +21,8 @@ void PickupDropper<T>::update(float dt, Player* player)
 	}
 	for (int i = 0; i < pickups.size(); i++)
 	{
-		pickups[i].drop(dt);
-		pickups[i].isColliding(player);
+		if (pickups[i].drop(dt) || pickups[i].isColliding(player))
+			pickups.erase(pickups.begin() + i);
 	}
 }
 

@@ -24,7 +24,7 @@ namespace Pickups
 		void setPos(sf::Vector2f position);
 		sf::Vector2f getPos();
 
-		void isColliding(Player* player);
+		bool isColliding(Player* player);
 
 		virtual void onCollect(Player* player) = 0;
 	};
