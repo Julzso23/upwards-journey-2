@@ -10,9 +10,8 @@ namespace Pickups
 	private:
 		int worth;
 	public:
-		Health();
 		Health(sf::Vector2f position, int worth, sf::Texture* texture);
-		void create(sf::Vector2f position, int worth);
+		void create(sf::Vector2f position, int worth, sf::Texture* texure);
 		void onCollect(Player* player);
 	};
 }
