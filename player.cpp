@@ -84,6 +84,15 @@ void Player::addLives(int num)
 		lives = 5;
 }
 
+int Player::getScore()
+{
+	return score;
+}
+void Player::addScore(int num)
+{
+	score += abs(num);
+}
+
 void Player::setHat(sf::String name)
 {
 	if (name == "")

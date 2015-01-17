@@ -40,3 +40,4 @@ std::vector<T>* PickupDropper<T>::getPickups()
 }
 
 template class PickupDropper <Pickups::Health>;
+template class PickupDropper <Pickups::Coin>;

@@ -35,6 +35,9 @@ public:
 	int getLives();
 	void addLives(int num);
 
+	int getScore();
+	void addScore(int num);
+
 	void setHat(sf::String name);
 };
 

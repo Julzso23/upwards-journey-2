@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include <vector>
 #include "Health.h"
+#include "Coin.h"
 
 template <class T>
 class PickupDropper : public sf::Drawable

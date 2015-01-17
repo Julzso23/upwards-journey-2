@@ -48,7 +48,8 @@ void UJ::load()
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();
 
-	healthDropper.create(0.4f, "health");
+	healthDropper.create(0.2f, "health");
+	coinDropper.create(0.4f, "coin");
 
 	hud.setPlayer(&player);
 
