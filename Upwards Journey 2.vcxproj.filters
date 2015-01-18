@@ -93,6 +93,9 @@
     <ClInclude Include="pickups\Coin.h">
       <Filter>Header Files\Pickups</Filter>
     </ClInclude>
+    <ClInclude Include="Maths.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="axis.cpp">
@@ -151,6 +154,9 @@
     </ClCompile>
     <ClCompile Include="pickups\coin.cpp">
       <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="maths.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

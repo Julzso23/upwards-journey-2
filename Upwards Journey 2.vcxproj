@@ -29,6 +29,7 @@
     <ClInclude Include="GUI\Menu.h" />
     <ClInclude Include="HUD.h" />
     <ClInclude Include="KeyCommand.h" />
+    <ClInclude Include="Maths.h" />
     <ClInclude Include="Obsticle.h" />
     <ClInclude Include="ObsticleDropper.h" />
     <ClInclude Include="pickups\Coin.h" />
@@ -50,6 +51,7 @@
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="keyCommand.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="maths.cpp" />
     <ClCompile Include="obsticle.cpp" />
     <ClCompile Include="obsticleDropper.cpp" />
     <ClCompile Include="pickups\coin.cpp" />
