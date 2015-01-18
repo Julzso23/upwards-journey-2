@@ -13,7 +13,13 @@ HUD::HUD()
 	gameOverText.setString("GAME OVER");
 	gameOverText.setCharacterSize(96);
 	gameOverText.setColor(sf::Color::Red);
-	gameOverText.setPosition(960 - gameOverText.getLocalBounds().width / 2, 540 - gameOverText.getLocalBounds().height / 2);
+	gameOverText.setPosition(960.f - gameOverText.getLocalBounds().width / 2.f, 540.f - gameOverText.getLocalBounds().height / 2.f);
+
+	scoreText.setFont(HUDFont);
+	scoreText.setString("Score: 0");
+	scoreText.setCharacterSize(64);
+	scoreText.setColor(sf::Color::Black);
+	scoreText.setPosition(4.f, 1000.f);
 }
 
 void HUD::setPlayer(Player* player)
@@ -42,6 +48,8 @@ void HUD::update()
 		else
 			hearts[i].setTextureRect(sf::IntRect(0, 0, 64, 64));
 	}
+
+	scoreText.setString("Score: " + std::to_string(player->getScore()));
 }
 
 void HUD::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -50,4 +58,6 @@ void HUD::draw(sf::RenderTarget& target, sf::RenderStates states) const
 		target.draw(hearts[i]);
 	if (player->getLives() == 0)
 		target.draw(gameOverText);
+
+	target.draw(scoreText);
 }

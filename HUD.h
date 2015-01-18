@@ -15,6 +15,8 @@ private:
 	sf::Text gameOverText;
 	sf::Font HUDFont;
 
+	sf::Text scoreText;
+
 	Player* player;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
