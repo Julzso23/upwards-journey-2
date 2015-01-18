@@ -73,6 +73,7 @@ void UJ::update(float dt)
 		dropper.update(dt);
 
 		healthDropper.update(dt, &player);
+		coinDropper.update(dt, &player);
 	}
 	else
 	{
@@ -87,7 +88,7 @@ void UJ::draw(sf::RenderWindow* window)
 	window->draw(player);
 
 	window->draw(healthDropper);
-
+	window->draw(coinDropper);
 	window->draw(dropper);
 
 	window->draw(hud);
