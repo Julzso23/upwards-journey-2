@@ -46,7 +46,7 @@ namespace Pickups
 
 	bool Pickup::isColliding(Player* player)
 	{
-		if (((player->getPos().x + 16) > position.x) && ((player->getPos().x - 16) < (position.x + 64)) && ((player->getPos().y + 48) > position.y) && ((player->getPos().y - 48) < (position.y + 64)))
+		if (((player->getPos().x + 16) > position.x - 32) && ((player->getPos().x - 16) < (position.x + 32)) && ((player->getPos().y + 48) > position.y - 32) && ((player->getPos().y - 48) < (position.y + 32)))
 		{
 			onCollect(player);
 			return true;
