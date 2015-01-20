@@ -2,7 +2,6 @@
 #include "UJ.h"
 #include "Axis.h"
 #include "Player.h"
-#include <iostream>
 
 void UJ::load()
 {

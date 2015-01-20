@@ -15,6 +15,8 @@ Player::Player()
 	hatSprite.setTexture(hatTexure);
 	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2, hatTexure.getSize().y / 2 + 56.f));
 	score = 0;
+
+	collisionLines.resize(4);
 }
 
 void Player::move(sf::Vector2f direction, float dt)
@@ -63,13 +65,43 @@ sf::Vector2f Player::getPos()
 
 void Player::isColliding(Obsticle* obsticle)
 {
-	if (!respawning && ((position.x + 16) > obsticle->getPos().x) && ((position.x - 16) < (obsticle->getPos().x + obsticle->getSize())) && ((position.y + 48) > obsticle->getPos().y) && ((position.y - 48) < (obsticle->getPos().y + obsticle->getSize())))
+	if (!respawning)
 	{
-		respawnClock.restart();
-		lives--;
-		if (lives < 0)
-			lives = 0;
-		respawning = true;
+		sf::Vector2f obsticlePos = obsticle->getPos();
+		float size = obsticle->getSize();
+		float w = 10.f;
+		float h = 48.f;
+		float angle = (3.14159265359f * animation.getRot()) / 180;
+		// Top
+		collisionLines[0].setPoints(sf::Vector2f(position.x - w * cos(angle) + h * sin(angle), position.y - w * sin(angle) - h * cos(angle)), sf::Vector2f(position.x + w * cos(angle) + h * sin(angle), position.y + w * sin(angle) - h * cos(angle)));
+		// Left
+		collisionLines[1].setPoints(sf::Vector2f(position.x - w * cos(angle) + h * sin(angle), position.y - w * sin(angle) - h * cos(angle)), sf::Vector2f(position.x - w * cos(angle) - h * sin(angle), position.y - w * sin(angle) + h * cos(angle)));
+		// Right
+		collisionLines[2].setPoints(sf::Vector2f(position.x + w * cos(angle) + h * sin(angle), position.y + w * sin(angle) - h * cos(angle)), sf::Vector2f(position.x + w * cos(angle) - h * sin(angle), position.y + w * sin(angle) + h * cos(angle)));
+		// Bottom
+		collisionLines[3].setPoints(sf::Vector2f(position.x - w * cos(angle) - h * sin(angle), position.y - w * sin(angle) + h * cos(angle)), sf::Vector2f(position.x + w * cos(angle) - h * sin(angle), position.y + w * sin(angle) + h * cos(angle)));
+
+		std::vector<Maths::Line>* obsticleLines = obsticle->getCollisionLines();
+		
+		bool colliding = false;
+		if ((position.x > obsticlePos.x) && (position.x < (obsticlePos.x + size)) && (position.y > obsticlePos.y) && (position.y < (obsticlePos.y + size)))
+			colliding = true;
+		else
+			for (int i = 0; i < obsticleLines->size(); i++)
+				for (int e = 0; e < collisionLines.size(); e++)
+					if (Maths::lineIntersect((*obsticleLines)[i], collisionLines[e], nullptr, nullptr))
+					{
+						colliding = true;
+						break;
+					}
+		if (colliding)
+		{
+			respawnClock.restart();
+			lives--;
+			if (lives < 0)
+				lives = 0;
+			respawning = true;
+		}
 	}
 }
 

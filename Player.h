@@ -4,6 +4,7 @@
 #include <SFML\Graphics.hpp>
 #include "Animation.h"
 #include "Obsticle.h"
+#include "Maths.h"
 
 class Player : public sf::Drawable
 {
@@ -19,6 +20,8 @@ private:
 	sf::Clock vibrateClock;
 	sf::Vector2f vibrationOffset;
 	int score;
+
+	std::vector<Maths::Line> collisionLines;
 
 	void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
