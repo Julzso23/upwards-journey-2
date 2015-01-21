@@ -6,24 +6,13 @@
 
 namespace Pickups
 {
-	class Pickup : public sf::Drawable
+	class Pickup : public sf::Sprite
 	{
 	private:
-		sf::Vector2f position;
-		sf::Sprite sprite;
-
-		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	public:
 		Pickup();
 
 		bool drop(float dt);
-
-		void setTexture(sf::Texture* texture);
-
-		sf::Sprite* getSprite();
-
-		void setPos(sf::Vector2f position);
-		sf::Vector2f getPos();
 
 		bool isColliding(Player* player);
 
