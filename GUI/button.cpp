@@ -8,8 +8,8 @@ namespace GUI
 	}
 	Button::Button(sf::String text, std::function<void()> func, sf::Font* font)
 	{
-		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(1024.f, 64.f));
 		this->text.setFont(*font);
+		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(1024.f, 64.f));
 		setClickFunc(func);
 	}
 	Button::Button(sf::String text, sf::Vector2f position, sf::Vector2f size)
@@ -20,7 +20,7 @@ namespace GUI
 	void Button::create(sf::String text, sf::Vector2f position, sf::Vector2f size)
 	{
 		setPosition(position);
-		this->shape.setSize(size);
+		shape.setSize(size);
 
 		this->text.setString(text);
 		this->text.setColor(sf::Color(0, 0, 0, 255));
@@ -81,9 +81,9 @@ namespace GUI
 
 	void Button::setSize(sf::Vector2f size)
 	{
-		this->shape.setSize(size);
-		this->text.setCharacterSize(static_cast<int>(floor(size.y)) - 16);
-		this->text.setPosition(sf::Vector2f((size.x / 2) - (this->text.getLocalBounds().width / 2), (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
+		shape.setSize(size);
+		text.setCharacterSize(static_cast<int>(floor(size.y)) - 16);
+		text.setPosition(sf::Vector2f((size.x / 2) - (this->text.getLocalBounds().width / 2), (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
 	}
 	sf::Vector2f Button::getSize()
 	{
