@@ -23,7 +23,7 @@ namespace GUI
 				this->buttons[i].setSize(sf::Vector2f(1024.f, (1080.f / size) - 6.f));
 		}
 		for (int i = 0; i < this->buttons.size(); i++)
-			this->buttons[i].setPos(sf::Vector2f(0.f, i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
+			this->buttons[i].setPosition(sf::Vector2f(0.f, i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
 		setPos(sf::Vector2f(0.f, 540.f - getHeight() / 2.f));
 	}
 
@@ -37,7 +37,7 @@ namespace GUI
 				this->buttons[i].setSize(sf::Vector2f(1024.f, (1080.f / size) - 6.f));
 		}
 		for (int i = 0; i < this->buttons.size(); i++)
-			this->buttons[i].setPos(sf::Vector2f(0.f, i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
+			this->buttons[i].setPosition(sf::Vector2f(0.f, i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
 		setPos(sf::Vector2f(0.f, 540.f - getHeight() / 2.f));
 	}
 
@@ -81,7 +81,7 @@ namespace GUI
 	{
 		this->position = position;
 		for (int i = 0; i < this->buttons.size(); i++)
-			this->buttons[i].setPos(sf::Vector2f(this->position.x, this->position.y + i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
+			this->buttons[i].setPosition(sf::Vector2f(this->position.x, this->position.y + i * (((buttons.size() > 0) ? buttons[0].getSize().y : 0.f) + 6.f)));
 	}
 	sf::Vector2f Menu::getPos()
 	{

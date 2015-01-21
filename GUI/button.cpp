@@ -19,13 +19,12 @@ namespace GUI
 
 	void Button::create(sf::String text, sf::Vector2f position, sf::Vector2f size)
 	{
-		this->shape.setPosition(position);
+		setPosition(position);
 		this->shape.setSize(size);
 
 		this->text.setString(text);
-		this->text.setCharacterSize(size.y - 16);
-		this->text.setPosition(sf::Vector2f(position.x + (size.x / 2) - (this->text.getLocalBounds().width / 2), position.y + (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
 		this->text.setColor(sf::Color(0, 0, 0, 255));
+		setSize(size);
 
 		state = GUI::State::Idle;
 	}
@@ -33,7 +32,7 @@ namespace GUI
 	void Button::update(float dt, sf::Vector2i mousePos)
 	{
 		sf::Vector2i mouse = mousePos;
-		sf::Vector2f pos = shape.getPosition();
+		sf::Vector2f pos = getPosition();
 		sf::Vector2f size = shape.getSize();
 		if ((mouse.x > pos.x) && (mouse.x < pos.x + size.x) && (mouse.y > pos.y) && (mouse.y < pos.y + size.y))
 		{
@@ -52,8 +51,9 @@ namespace GUI
 
 	void Button::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
-		target.draw(shape);
-		target.draw(text);
+		states.transform = getTransform();
+		target.draw(shape, states);
+		target.draw(text, states);
 	}
 
 	void Button::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
@@ -79,23 +79,11 @@ namespace GUI
 		onClick = func;
 	}
 
-	void Button::setPos(sf::Vector2f position)
-	{
-		sf::Vector2f size = shape.getSize();
-		this->shape.setPosition(position);
-		this->text.setPosition(sf::Vector2f(position.x + (size.x / 2) - (this->text.getLocalBounds().width / 2), position.y + (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
-	}
-	sf::Vector2f Button::getPos()
-	{
-		return shape.getPosition();
-	}
-
 	void Button::setSize(sf::Vector2f size)
 	{
-		sf::Vector2f position = shape.getPosition();
 		this->shape.setSize(size);
 		this->text.setCharacterSize(static_cast<int>(floor(size.y)) - 16);
-		this->text.setPosition(sf::Vector2f(position.x + (size.x / 2) - (this->text.getLocalBounds().width / 2), position.y + (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
+		this->text.setPosition(sf::Vector2f((size.x / 2) - (this->text.getLocalBounds().width / 2), (size.y / 2) - (this->text.getLocalBounds().height / 2) - this->text.getLocalBounds().top));
 	}
 	sf::Vector2f Button::getSize()
 	{

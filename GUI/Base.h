@@ -5,7 +5,7 @@
 
 namespace GUI
 {
-	class Base : public sf::Drawable
+	class Base : public sf::Drawable, public sf::Transformable
 	{
 	private:
 	public:
