@@ -65,7 +65,7 @@ void UJ::update(float dt)
 
 	if (!paused)
 	{
-		player.move(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
+		player.control(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
 		for (int i = 0; i < obsticles->size(); i++)
 			player.isColliding(&(*obsticles)[i]);
 

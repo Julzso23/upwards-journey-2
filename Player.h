@@ -6,10 +6,9 @@
 #include "Obsticle.h"
 #include "Maths.h"
 
-class Player : public sf::Drawable
+class Player : public sf::Drawable, public sf::Transformable
 {
 private:
-	sf::Vector2f position;
 	sf::Vector2f speed;
 	int lives;
 	bool respawning;
@@ -27,11 +26,9 @@ private:
 public:
 	Player();
 
-	void move(sf::Vector2f direction, float dt);
+	void control(sf::Vector2f direction, float dt);
 
 	void update(float dt);
-
-	sf::Vector2f getPos();
 
 	void isColliding(Obsticle* obsticle);
 

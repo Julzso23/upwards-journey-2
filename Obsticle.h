@@ -4,10 +4,9 @@
 #include <SFML\Graphics.hpp>
 #include "Maths.h"
 
-class Obsticle : public sf::Drawable
+class Obsticle : public sf::Drawable, public sf::Transformable
 {
 private:
-	sf::Vector2f position;
 	sf::Vector2f speed;
 	float size;
 	sf::RectangleShape shape;
@@ -18,7 +17,6 @@ private:
 public:
 	Obsticle(sf::Vector2f position, float size, sf::Vector2f speed);
 	bool drop(float dt);
-	sf::Vector2f getPos();
 	float getSize();
 	std::vector<Maths::Line>* getCollisionLines();
 };

@@ -2,10 +2,9 @@
 
 Obsticle::Obsticle(sf::Vector2f position, float size, sf::Vector2f speed)
 {
-	this->position = position;
+	setPosition(position);
 	this->speed = speed;
 	this->size = size;
-	this->shape.setPosition(position);
 	this->shape.setSize(sf::Vector2f(size, size));
 	this->shape.setFillColor(sf::Color::Black);
 	this->collisionLines.resize(4);
@@ -13,10 +12,9 @@ Obsticle::Obsticle(sf::Vector2f position, float size, sf::Vector2f speed)
 
 bool Obsticle::drop(float dt)
 {
-	position.x += speed.x * dt;
-	position.y += speed.y * dt;
-	shape.setPosition(position);
+	move(speed.x * dt, speed.y * dt);
 
+	sf::Vector2f position = getPosition();
 	// Top
 	collisionLines[0].setPoints(sf::Vector2f(position.x, position.y), sf::Vector2f(position.x + size, position.y));
 	// Left
@@ -33,12 +31,8 @@ bool Obsticle::drop(float dt)
 
 void Obsticle::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	target.draw(shape);
-}
-
-sf::Vector2f Obsticle::getPos()
-{
-	return position;
+	states.transform = getTransform();
+	target.draw(shape, states);
 }
 
 float Obsticle::getSize()

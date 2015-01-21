@@ -4,8 +4,7 @@
 
 Player::Player()
 {
-	position = sf::Vector2f(960, 800);
-	animation.setPos(position);
+	setPosition(sf::Vector2f(960, 800));
 	speed = sf::Vector2f(600, 0);
 	lives = 3;
 	respawning = false;
@@ -19,59 +18,56 @@ Player::Player()
 	collisionLines.resize(4);
 }
 
-void Player::move(sf::Vector2f direction, float dt)
+void Player::control(sf::Vector2f direction, float dt)
 {
-	position.x += speed.x * direction.x * dt;
-	position.y += speed.y * direction.y * dt;
+	move(speed.x * direction.x * dt, speed.y * direction.y * dt);
+	sf::Vector2f position = getPosition();
 	if (position.x > 1920.f) position.x = 1920.f;
 	if (position.x < 0.f) position.x = 0.f;
-	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
-	animation.setRot(direction.x * 25.f);
+	animation.setRotation(direction.x * 25.f);
 	hatSprite.setRotation(direction.x * 25.f);
 }
 
 void Player::update(float dt)
 {
+	sf::Vector2f position = getPosition();
 	animation.update(dt);
 	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock.getElapsedTime().asSeconds()));
+	animation.setPosition(sf::Vector2f(vibrationOffset.x, vibrationOffset.y));
 	if (vibrateClock.getElapsedTime().asSeconds() >= 2 * 3.14159265)
 		vibrateClock.restart();
-	animation.setPos(sf::Vector2f(position.x + vibrationOffset.x, position.y + vibrationOffset.y));
-	hatSprite.setPosition(position.x + vibrationOffset.x, position.y + vibrationOffset.y);
+	hatSprite.setPosition(vibrationOffset.x, vibrationOffset.y);
 	if (respawning)
 	{
-		animation.setColour(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
+		animation.setColor(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
 		hatSprite.setColor(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
 		if (respawnClock.getElapsedTime().asSeconds() > 3.f)
 			respawning = false;
 	}
 	else
 	{
-		animation.setColour(sf::Color(255, 255, 255, 255));
+		animation.setColor(sf::Color(255, 255, 255, 255));
 		hatSprite.setColor(sf::Color(255, 255, 255, 255));
 	}
 }
 
 void Player::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
+	states.transform = getTransform();
 	target.draw(animation, states);
-	target.draw(hatSprite);
-}
-
-sf::Vector2f Player::getPos()
-{
-	return position;
+	target.draw(hatSprite, states);
 }
 
 void Player::isColliding(Obsticle* obsticle)
 {
 	if (!respawning)
 	{
-		sf::Vector2f obsticlePos = obsticle->getPos();
+		sf::Vector2f obsticlePos = obsticle->getPosition();
 		float size = obsticle->getSize();
 		float w = 10.f;
 		float h = 48.f;
-		float angle = (3.14159265359f * animation.getRot()) / 180;
+		float angle = (3.14159265359f * animation.getRotation()) / 180;
+		sf::Vector2f position = getPosition();
 		// Top
 		collisionLines[0].setPoints(sf::Vector2f(position.x - w * cos(angle) + h * sin(angle), position.y - w * sin(angle) - h * cos(angle)), sf::Vector2f(position.x + w * cos(angle) + h * sin(angle), position.y + w * sin(angle) - h * cos(angle)));
 		// Left
