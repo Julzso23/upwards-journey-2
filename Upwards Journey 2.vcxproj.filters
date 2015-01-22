@@ -37,11 +37,14 @@
     <Filter Include="Resource Files\images\pickups">
       <UniqueIdentifier>{7ec9ff72-38c7-4b15-8891-c4d994b133c6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Controls">
+      <UniqueIdentifier>{3a484388-faee-431a-84e3-fef1d12abe7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Controls">
+      <UniqueIdentifier>{3b59a1c2-24ee-405b-9806-7a9dd01ff4e9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Axis.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,9 +75,6 @@
     <ClInclude Include="ObsticleDropper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="KeyCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GUI\Dropdown.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
@@ -96,11 +96,14 @@
     <ClInclude Include="Maths.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="controls\Axis.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\KeyCommand.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="axis.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -134,9 +137,6 @@
     <ClCompile Include="obsticleDropper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="keyCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="GUI\dropdown.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
@@ -157,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="maths.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\axis.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\keyCommand.cpp">
+      <Filter>Source Files\Controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -20,15 +20,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Animation.h" />
-    <ClInclude Include="Axis.h" />
     <ClInclude Include="Background.h" />
+    <ClInclude Include="controls\Axis.h" />
+    <ClInclude Include="controls\KeyCommand.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Base.h" />
     <ClInclude Include="GUI\Button.h" />
     <ClInclude Include="GUI\Dropdown.h" />
     <ClInclude Include="GUI\Menu.h" />
     <ClInclude Include="HUD.h" />
-    <ClInclude Include="KeyCommand.h" />
     <ClInclude Include="Maths.h" />
     <ClInclude Include="Obsticle.h" />
     <ClInclude Include="ObsticleDropper.h" />
@@ -41,15 +41,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="animation.cpp" />
-    <ClCompile Include="axis.cpp" />
     <ClCompile Include="background.cpp" />
+    <ClCompile Include="controls\axis.cpp" />
+    <ClCompile Include="controls\keyCommand.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GUI\base.cpp" />
     <ClCompile Include="GUI\button.cpp" />
     <ClCompile Include="GUI\dropdown.cpp" />
     <ClCompile Include="GUI\menu.cpp" />
     <ClCompile Include="hud.cpp" />
-    <ClCompile Include="keyCommand.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maths.cpp" />
     <ClCompile Include="obsticle.cpp" />

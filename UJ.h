@@ -3,12 +3,12 @@
 
 #include <SFML\Graphics.hpp>
 #include "Game.h"
-#include "Axis.h"
+#include "controls\Axis.h"
 #include "Player.h"
 #include "Background.h"
 #include "GUI\Menu.h"
 #include "ObsticleDropper.h"
-#include "KeyCommand.h"
+#include "controls\KeyCommand.h"
 #include "HUD.h"
 #include "pickups\PickupDropper.h"
 
