@@ -2,19 +2,11 @@
 
 ControlSet::ControlSet()
 {
-	this->key = -1;
-	this->joystick = -1;
-	this->axis = -1;
-	this->axisIsPos = true;
-	this->mouse = -1;
+	create(-1, -1, -1, true, -1);
 }
 ControlSet::ControlSet(int key, int joystick, int axis, bool axisIsPos, int mouse)
 {
-	this->key = key;
-	this->joystick = joystick;
-	this->axis = axis;
-	this->axisIsPos = axisIsPos;
-	this->mouse = mouse;
+	create(key, joystick, axis, axisIsPos, mouse);
 }
 
 void ControlSet::create(int key, int joystick, int axis, bool axisIsPos, int mouse)
@@ -47,15 +39,11 @@ float ControlSet::getValue()
 
 Axis::Axis()
 {
-	this->positive = ControlSet();
-	this->negative = ControlSet();
-	this->deadZone = 0;
+	create(ControlSet(), ControlSet(), 0);
 }
 Axis::Axis(ControlSet positive, ControlSet negative, float deadZone)
 {
-	this->positive = positive;
-	this->negative = negative;
-	this->deadZone = deadZone;
+	create(positive, negative, deadZone);
 }
 
 void Axis::create(ControlSet positive, ControlSet negative, float deadZone)
