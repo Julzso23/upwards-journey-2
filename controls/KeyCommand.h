@@ -1,5 +1,5 @@
-#ifndef KEYCOMMAND_H
-#define KEYCOMMAND_H
+#ifndef CONTROLS_KEYCOMMAND_H
+#define CONTROLS_KEYCOMMAND_H
 
 #include <vector>
 #include <functional>

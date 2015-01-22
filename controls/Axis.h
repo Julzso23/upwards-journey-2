@@ -1,5 +1,5 @@
-#ifndef AXIS_H
-#define AXIS_H
+#ifndef CONTROLS_AXIS_H
+#define CONTROLS_AXIS_H
 
 #include <SFML\Graphics.hpp>
 
