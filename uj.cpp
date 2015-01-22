@@ -1,7 +1,4 @@
-#include "Game.h"
 #include "UJ.h"
-#include "Axis.h"
-#include "Player.h"
 
 void UJ::load()
 {
