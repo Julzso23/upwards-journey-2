@@ -102,6 +102,12 @@
     <ClInclude Include="controls\KeyCommand.h">
       <Filter>Header Files\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="controls\Gamepad.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="controls\GamepadManager.h">
+      <Filter>Header Files\Controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -162,6 +168,12 @@
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
     <ClCompile Include="controls\keyCommand.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\gamepad.cpp">
+      <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="controls\gamepadManager.cpp">
       <Filter>Source Files\Controls</Filter>
     </ClCompile>
   </ItemGroup>

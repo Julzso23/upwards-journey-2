@@ -22,6 +22,8 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Background.h" />
     <ClInclude Include="controls\Axis.h" />
+    <ClInclude Include="controls\Gamepad.h" />
+    <ClInclude Include="controls\GamepadManager.h" />
     <ClInclude Include="controls\KeyCommand.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GUI\Base.h" />
@@ -43,6 +45,8 @@
     <ClCompile Include="animation.cpp" />
     <ClCompile Include="background.cpp" />
     <ClCompile Include="controls\axis.cpp" />
+    <ClCompile Include="controls\gamepad.cpp" />
+    <ClCompile Include="controls\gamepadManager.cpp" />
     <ClCompile Include="controls\keyCommand.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="GUI\base.cpp" />
