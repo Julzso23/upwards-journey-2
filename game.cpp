@@ -26,22 +26,29 @@ void Game::run()
 		{
 			switch (event.type)
 			{
-				case sf::Event::Closed: {
+				case sf::Event::Closed:
 					window.close();
-				}
-				case sf::Event::MouseButtonPressed: {
+					break;
+				case sf::Event::MouseButtonPressed:
 					mousePressed(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-				} break;
-				case sf::Event::MouseButtonReleased: {
+					break;
+				case sf::Event::MouseButtonReleased:
 					mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
-				} break;
-				case sf::Event::KeyPressed: {
+					break;
+				case sf::Event::KeyPressed:
 					keyPressed(event.key.code);
-				} break;
-				case sf::Event::KeyReleased: {
+					break;
+				case sf::Event::KeyReleased:
 					keyReleased(event.key.code);
-				} break;
-				default: break;
+					break;
+				case sf::Event::JoystickConnected:
+					joystickConnected(event.joystickConnect.joystickId);
+					break;
+				case sf::Event::JoystickDisconnected:
+					joystickDisconnected(event.joystickConnect.joystickId);
+					break;
+				default:
+					break;
 			}
 		}
 
