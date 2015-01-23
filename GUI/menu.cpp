@@ -41,6 +41,11 @@ namespace GUI
 		setPos(sf::Vector2f(0.f, 540.f - getHeight() / 2.f));
 	}
 
+	void Menu::clearButtons()
+	{
+		buttons.clear();
+	}
+
 	void Menu::show()
 	{
 		enabled = true;

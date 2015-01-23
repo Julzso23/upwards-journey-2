@@ -20,6 +20,7 @@ namespace GUI
 
 		void setButtons(std::vector<Button> buttons);
 		void addButton(Button button);
+		void clearButtons();
 
 		void show();
 		void hide();
