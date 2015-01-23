@@ -16,6 +16,8 @@ public:
 	void addGamepad(int id);
 	void removeGamepad(int id);
 
+	std::vector<Gamepad>* getGamepads();
+
 	bool isDown(XBoxButtons button);
 	float getAxis(XBoxAxes axis);
 };

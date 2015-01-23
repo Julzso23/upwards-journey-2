@@ -26,6 +26,11 @@ void GamepadManager::removeGamepad(int id)
 			gamepads.erase(gamepads.begin() + i);
 }
 
+std::vector<Gamepad>* GamepadManager::getGamepads()
+{
+	return &gamepads;
+}
+
 bool GamepadManager::isDown(XBoxButtons button)
 {
 	if (current == -1)
