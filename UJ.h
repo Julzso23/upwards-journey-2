@@ -11,11 +11,15 @@
 #include "controls\KeyCommand.h"
 #include "HUD.h"
 #include "pickups\PickupDropper.h"
+#include "controls\GamepadManager.h"
 
 class UJ : public Game
 {
 private:
 	Player player;
+
+	GamepadManager gamepadManager;
+
 	Axis xAxis;
 	Axis yAxis;
 
@@ -34,6 +38,9 @@ private:
 	GUI::Menu optionsMenu;
 	GUI::Menu optionsVideoMenu;
 	GUI::Menu optionsVideoResolutionsMenu;
+	GUI::Menu optionsControlsMenu;
+	GUI::Menu optionsControlsGamepadMenu;
+	GUI::Menu optionsControlsGamepadSelectMenu;
 	GUI::Menu* curMenu;
 
 	std::vector<KeyCommand> keyCommands;
@@ -58,6 +65,9 @@ public:
 
 	void setMenu();
 	void setMenu(GUI::Menu* menu);
+
+	void joystickConnected(int id);
+	void joystickDisconnected(int id);
 };
 
 #endif

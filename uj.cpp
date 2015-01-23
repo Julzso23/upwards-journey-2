@@ -16,12 +16,20 @@ void UJ::load()
 
 	optionsMenu.addButton(GUI::Button("Video", [&](){setMenu(&optionsVideoMenu); }, &font));
 	optionsMenu.addButton(GUI::Button("Audio", [&](){}, &font));
-	optionsMenu.addButton(GUI::Button("Controls", [&](){}, &font));
+	optionsMenu.addButton(GUI::Button("Controls", [&](){setMenu(&optionsControlsMenu); }, &font));
 	optionsMenu.addButton(GUI::Button("Back", [&](){setMenu(&mainMenu); }, &font));
 
 	optionsVideoMenu.addButton(GUI::Button("Resolutions", [&](){setMenu(&optionsVideoResolutionsMenu); }, &font));
 	optionsVideoMenu.addButton(GUI::Button("Toggle Fullscreen", [&](){toggleFullscreen(); }, &font));
 	optionsVideoMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsMenu); }, &font));
+
+	optionsControlsMenu.addButton(GUI::Button("Gamepad", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
+	optionsControlsMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsMenu); }, &font));
+
+	optionsControlsGamepadMenu.addButton(GUI::Button("Select Gamepad", [&](){setMenu(&optionsControlsGamepadSelectMenu); }, &font));
+	optionsControlsGamepadMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsMenu); }, &font));
+
+	optionsControlsGamepadSelectMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
 
 	for (int i = 0; i < getSupportedResolutions().size(); i++)
 	{
@@ -125,4 +133,23 @@ void UJ::setMenu(GUI::Menu* menu)
 	curMenu->show();
 	paused = true;
 	setCursorVisible(true);
+}
+
+void UJ::joystickConnected(int id)
+{
+	gamepadManager.addGamepad(id);
+	std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
+	optionsControlsGamepadSelectMenu.clearButtons();
+	for (int i = 0; i < gamepads->size(); i++)
+	{
+		optionsControlsGamepadSelectMenu.addButton(GUI::Button((*gamepads)[i].getIdentification().name, [&](){
+			gamepadManager.setCurrent(id);
+			setMenu(&optionsControlsGamepadMenu);
+		}, &font));
+	}
+	optionsControlsGamepadSelectMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
+}
+void UJ::joystickDisconnected(int id)
+{
+	gamepadManager.removeGamepad(id);
 }
