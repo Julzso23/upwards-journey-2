@@ -9,7 +9,7 @@ namespace GUI
 	Button::Button(sf::String text, std::function<void()> func, sf::Font* font)
 	{
 		this->text.setFont(*font);
-		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(1024.f, 64.f));
+		create(text, sf::Vector2f(0.f, 0.f), sf::Vector2f(1920.f, 64.f));
 		setClickFunc(func);
 	}
 	Button::Button(sf::String text, sf::Vector2f position, sf::Vector2f size)
