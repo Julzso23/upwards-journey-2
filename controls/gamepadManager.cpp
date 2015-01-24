@@ -2,6 +2,9 @@
 
 GamepadManager::GamepadManager()
 {
+	for (int i = 0; i < sf::Joystick::Count; i++)
+		if (sf::Joystick::isConnected(i))
+			addGamepad(i);
 	current = -1;
 }
 

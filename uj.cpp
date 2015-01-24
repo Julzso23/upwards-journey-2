@@ -29,6 +29,15 @@ void UJ::load()
 	optionsControlsGamepadMenu.addButton(GUI::Button("Select Gamepad", [&](){setMenu(&optionsControlsGamepadSelectMenu); }, &font));
 	optionsControlsGamepadMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsMenu); }, &font));
 
+	std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
+	for (int i = 0; i < gamepads->size(); i++)
+	{
+		int id = (*gamepads)[i].getId();
+		optionsControlsGamepadSelectMenu.addButton(GUI::Button((*gamepads)[i].getIdentification().name, [&](){
+			gamepadManager.setCurrent(id);
+			setMenu(&optionsControlsGamepadMenu);
+		}, &font));
+	}
 	optionsControlsGamepadSelectMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
 
 	for (int i = 0; i < getSupportedResolutions().size(); i++)
