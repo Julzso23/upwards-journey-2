@@ -33,6 +33,7 @@ public:
 	virtual void load() = 0;
 	virtual void update(float dt) = 0;
 	virtual void draw(sf::RenderWindow* window) = 0;
+	virtual void drawUnscaled(sf::RenderWindow* window) = 0;
 	virtual void mousePressed(sf::Mouse::Button button, sf::Vector2i position) = 0;
 	virtual void mouseReleased(sf::Mouse::Button button, sf::Vector2i position) = 0;
 	virtual void mouseMoved(int x, int y) = 0;
@@ -40,6 +41,7 @@ public:
 	virtual void keyReleased(sf::Keyboard::Key key) = 0;
 	virtual void joystickConnected(int id) = 0;
 	virtual void joystickDisconnected(int id) = 0;
+	virtual void windowResized(sf::Vector2u size) = 0;
 	virtual void onExit() = 0;
 };
 

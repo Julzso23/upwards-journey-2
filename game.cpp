@@ -72,6 +72,7 @@ void Game::run()
 		window.setView(camera);
 		draw(&window);
 		window.setView(window.getDefaultView());
+		drawUnscaled(&window);
 		window.display();
 	}
 
@@ -89,6 +90,7 @@ void Game::setResolution(sf::Vector2u size)
 		window.create(sf::VideoMode(size.x, size.y), title, sf::Style::Close | sf::Style::Titlebar | sf::Style::Fullscreen);
 	else
 		window.create(sf::VideoMode(size.x, size.y), title, sf::Style::Close | sf::Style::Titlebar);
+	windowResized(size);
 }
 
 void Game::setCursorVisible(bool visible)
