@@ -108,6 +108,9 @@
     <ClInclude Include="controls\GamepadManager.h">
       <Filter>Header Files\Controls</Filter>
     </ClInclude>
+    <ClInclude Include="GUI\HTMLMenu.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="game.cpp">
@@ -175,6 +178,9 @@
     </ClCompile>
     <ClCompile Include="controls\gamepadManager.cpp">
       <Filter>Source Files\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="GUI\htmlMenu.cpp">
+      <Filter>Source Files\GUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
