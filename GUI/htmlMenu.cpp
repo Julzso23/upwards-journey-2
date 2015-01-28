@@ -3,10 +3,10 @@
 namespace GUI
 {
 	using namespace Awesomium;
-	HTMLMenu::HTMLMenu(std::string fileName)
+	HTMLMenu::HTMLMenu(std::string fileName, sf::Vector2u size)
 	{
 		webCore = WebCore::Initialize(WebConfig());
-		view = webCore->CreateWebView(1920, 1080);
+		view = webCore->CreateWebView(size.x, size.y);
 		std::string path = "file:///html/" + fileName + ".html";
 		view->LoadURL(WebURL(WSLit(path.data())));
 		view->SetTransparent(true);
@@ -24,7 +24,7 @@ namespace GUI
 		webCore->Update();
 	}
 
-	void HTMLMenu::mousePressed(sf::Mouse::Button button)
+	void HTMLMenu::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		switch (button)
 		{
@@ -32,8 +32,9 @@ namespace GUI
 		case sf::Mouse::Middle: view->InjectMouseDown(MouseButton::kMouseButton_Middle);
 		case sf::Mouse::Right: view->InjectMouseDown(MouseButton::kMouseButton_Right);
 		}
+		view->InjectMouseMove(position.x, position.y);
 	}
-	void HTMLMenu::mouseReleased(sf::Mouse::Button button)
+	void HTMLMenu::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 	{
 		switch (button)
 		{
@@ -41,6 +42,7 @@ namespace GUI
 		case sf::Mouse::Middle: view->InjectMouseUp(MouseButton::kMouseButton_Middle);
 		case sf::Mouse::Right: view->InjectMouseUp(MouseButton::kMouseButton_Right);
 		}
+		view->InjectMouseMove(position.x, position.y);
 	}
 	void HTMLMenu::mouseMoved(int x, int y)
 	{
@@ -55,6 +57,12 @@ namespace GUI
 		texture->update(buffer);
 		delete buffer;
 		target.draw(sprite, states);
+	}
+
+	void HTMLMenu::windowResized(sf::Vector2u size)
+	{
+		view->Resize(size.x, size.y);
+		texture->create(size.x, size.y);
 	}
 
 	void HTMLMenu::onExit()

@@ -18,13 +18,15 @@ namespace GUI
 
 		void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	public:
-		HTMLMenu(std::string fileName);
+		HTMLMenu(std::string fileName, sf::Vector2u size);
 
 		void update();
 
-		void mousePressed(sf::Mouse::Button button);
-		void mouseReleased(sf::Mouse::Button button);
+		void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
+		void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
 		void mouseMoved(int x, int y);
+
+		void windowResized(sf::Vector2u size);
 
 		void onExit();
 	};
