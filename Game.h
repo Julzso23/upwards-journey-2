@@ -35,10 +35,12 @@ public:
 	virtual void draw(sf::RenderWindow* window) = 0;
 	virtual void mousePressed(sf::Mouse::Button button, sf::Vector2i position) = 0;
 	virtual void mouseReleased(sf::Mouse::Button button, sf::Vector2i position) = 0;
+	virtual void mouseMoved(int x, int y) = 0;
 	virtual void keyPressed(sf::Keyboard::Key key) = 0;
 	virtual void keyReleased(sf::Keyboard::Key key) = 0;
 	virtual void joystickConnected(int id) = 0;
 	virtual void joystickDisconnected(int id) = 0;
+	virtual void onExit() = 0;
 };
 
 #endif

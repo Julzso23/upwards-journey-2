@@ -35,6 +35,8 @@ void Game::run()
 				case sf::Event::MouseButtonReleased:
 					mouseReleased(event.mouseButton.button, sf::Vector2i(event.mouseButton.x, event.mouseButton.y));
 					break;
+				case sf::Event::MouseMoved:
+					mouseMoved(event.mouseMove.x, event.mouseMove.y);
 				case sf::Event::KeyPressed:
 					keyPressed(event.key.code);
 					break;
@@ -72,6 +74,8 @@ void Game::run()
 		window.setView(window.getDefaultView());
 		window.display();
 	}
+
+	onExit();
 }
 
 void Game::render(const sf::Drawable &drawable)
