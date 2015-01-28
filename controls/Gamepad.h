@@ -10,7 +10,7 @@ enum XBoxAxes
 	Triggers,
 	RightY,
 	RightX,
-	Unknown,
+	Nil,
 	DPadX,
 	DPadY
 };
