@@ -3,20 +3,53 @@
 namespace GUI
 {
 	using namespace Awesomium;
+	void MethodCallHandler::OnMethodCall(WebView* caller, unsigned int remoteObjectId, const WebString& methodName, const JSArray& args)
+	{
+		for (int i = 0; i < methods.size(); i++)
+			if (methods[i].name == methodName)
+				methods[i].function(args);
+	}
+	JSValue MethodCallHandler::OnMethodCallWithReturnValue(WebView* caller, unsigned int remoteObjectId, const WebString& methodName, const JSArray& args)
+	{
+		return JSValue();
+	}
+
+	void MethodCallHandler::addJSMethod(WebString name, std::function<void(const JSArray& args)> function)
+	{
+		JSMethod method;
+		method.name = name;
+		method.function = function;
+		methods.insert(methods.end(), method);
+	}
+
 	HTMLMenu::HTMLMenu(std::string fileName, sf::Vector2u size)
 	{
 		webCore = WebCore::Initialize(WebConfig());
+
 		view = webCore->CreateWebView(size.x, size.y);
-		std::string path = "file:///html/" + fileName + ".html";
-		view->LoadURL(WebURL(WSLit(path.data())));
+		view->LoadURL(WebURL(WSLit(std::string("file:///html/" + fileName + ".html").data())));
 		view->SetTransparent(true);
+		methodCallHander = new MethodCallHandler();
+		view->set_js_method_handler(methodCallHander);
+
 		texture = new sf::Texture();
-		texture->create(1920, 1080);
+		texture->create(size.x, size.y);
 		sprite.setTexture(*texture);
+
 		while (view->IsLoading())
 			webCore->Update();
 		Sleep(300);
 		webCore->Update();
+	}
+
+	void HTMLMenu::addJSMethod(WebString name, std::function<void(const JSArray& args)> function)
+	{
+		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
+		if (window.IsObject())
+		{
+			window.ToObject().SetCustomMethod(name, false);
+		}
+		methodCallHander->addJSMethod(name, function);
 	}
 
 	void HTMLMenu::update()
@@ -68,6 +101,7 @@ namespace GUI
 	void HTMLMenu::onExit()
 	{
 		delete texture;
+		delete methodCallHander;
 		view->Destroy();
 		WebCore::Shutdown();
 	}
