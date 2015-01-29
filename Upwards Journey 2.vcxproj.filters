@@ -199,6 +199,9 @@
     <Image Include="images\pickups\health.png">
       <Filter>Resource Files\images\pickups</Filter>
     </Image>
+    <Image Include="images\hats\top.png">
+      <Filter>Resource Files\images\hats</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Font Include="fonts\Frail-Sans.otf">
