@@ -15,15 +15,22 @@ namespace GUI
 		Awesomium::WebString name;
 		std::function<void(const Awesomium::JSArray& args)> function;
 	};
+	struct JSMethodWithReturn
+	{
+		Awesomium::WebString name;
+		std::function<Awesomium::JSValue(const Awesomium::JSArray& args)> function;
+	};
 
 	class MethodCallHandler : public Awesomium::JSMethodHandler
 	{
 	private:
 		std::vector<JSMethod> methods;
+		std::vector<JSMethodWithReturn> returnMethods;
 	public:
 		void OnMethodCall(Awesomium::WebView* caller, unsigned int remoteObjectId, const Awesomium::WebString& methodName, const Awesomium::JSArray& args);
 		Awesomium::JSValue OnMethodCallWithReturnValue(Awesomium::WebView* caller, unsigned int remoteObjectId, const Awesomium::WebString& methodName, const Awesomium::JSArray& args);
 		void addJSMethod(Awesomium::WebString name, std::function<void(const Awesomium::JSArray& args)> function);
+		void addJSMethodWithReturn(Awesomium::WebString name, std::function<Awesomium::JSValue(const Awesomium::JSArray& args)> function);
 	};
 
 	class HTMLMenu : public sf::Drawable
@@ -40,6 +47,7 @@ namespace GUI
 		HTMLMenu(std::string fileName, sf::Vector2u size);
 
 		void addJSMethod(Awesomium::WebString name, std::function<void(const Awesomium::JSArray& args)> function);
+		void addJSMethodWithReturn(Awesomium::WebString name, std::function<Awesomium::JSValue(const Awesomium::JSArray& args)> function);
 
 		void update();
 

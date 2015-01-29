@@ -11,6 +11,9 @@ namespace GUI
 	}
 	JSValue MethodCallHandler::OnMethodCallWithReturnValue(WebView* caller, unsigned int remoteObjectId, const WebString& methodName, const JSArray& args)
 	{
+		for (int i = 0; i < returnMethods.size(); i++)
+			if (returnMethods[i].name == methodName)
+				return returnMethods[i].function(args);
 		return JSValue();
 	}
 
@@ -20,6 +23,13 @@ namespace GUI
 		method.name = name;
 		method.function = function;
 		methods.insert(methods.end(), method);
+	}
+	void MethodCallHandler::addJSMethodWithReturn(WebString name, std::function<JSValue(const JSArray& args)> function)
+	{
+		JSMethodWithReturn method;
+		method.name = name;
+		method.function = function;
+		returnMethods.insert(returnMethods.end(), method);
 	}
 
 	HTMLMenu::HTMLMenu(std::string fileName, sf::Vector2u size)
@@ -50,6 +60,15 @@ namespace GUI
 			window.ToObject().SetCustomMethod(name, false);
 		}
 		methodCallHander->addJSMethod(name, function);
+	}
+	void HTMLMenu::addJSMethodWithReturn(WebString name, std::function<JSValue(const JSArray& args)> function)
+	{
+		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
+		if (window.IsObject())
+		{
+			window.ToObject().SetCustomMethod(name, true);
+		}
+		methodCallHander->addJSMethodWithReturn(name, function);
 	}
 
 	void HTMLMenu::update()
