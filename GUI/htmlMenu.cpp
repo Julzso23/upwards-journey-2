@@ -32,6 +32,15 @@ namespace GUI
 		returnMethods.insert(returnMethods.end(), method);
 	}
 
+	std::vector<JSMethod> MethodCallHandler::getJSMethods()
+	{
+		return methods;
+	}
+	std::vector<JSMethodWithReturn> MethodCallHandler::getJSMethodsWithReturns()
+	{
+		return returnMethods;
+	}
+
 	HTMLMenu::HTMLMenu(std::string fileName, sf::Vector2u size)
 	{
 		webCore = WebCore::Initialize(WebConfig());
@@ -56,18 +65,14 @@ namespace GUI
 	{
 		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
 		if (window.IsObject())
-		{
 			window.ToObject().SetCustomMethod(name, false);
-		}
 		methodCallHander->addJSMethod(name, function);
 	}
 	void HTMLMenu::addJSMethodWithReturn(WebString name, std::function<JSValue(const JSArray& args)> function)
 	{
 		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
 		if (window.IsObject())
-		{
 			window.ToObject().SetCustomMethod(name, true);
-		}
 		methodCallHander->addJSMethodWithReturn(name, function);
 	}
 
@@ -115,6 +120,16 @@ namespace GUI
 	{
 		view->Resize(size.x, size.y);
 		texture->create(size.x, size.y);
+		std::vector<JSMethod> methods = methodCallHander->getJSMethods();
+		std::vector<JSMethodWithReturn> returnMethods = methodCallHander->getJSMethodsWithReturns();
+		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
+		if (window.IsObject())
+		{
+			for (int i = 0; i < methods.size(); i++)
+				window.ToObject().SetCustomMethod(methods[i].name, false);
+			for (int i = 0; i < returnMethods.size(); i++)
+				window.ToObject().SetCustomMethod(returnMethods[i].name, true);
+		}
 	}
 
 	void HTMLMenu::onExit()

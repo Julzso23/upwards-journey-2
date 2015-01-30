@@ -31,6 +31,8 @@ namespace GUI
 		Awesomium::JSValue OnMethodCallWithReturnValue(Awesomium::WebView* caller, unsigned int remoteObjectId, const Awesomium::WebString& methodName, const Awesomium::JSArray& args);
 		void addJSMethod(Awesomium::WebString name, std::function<void(const Awesomium::JSArray& args)> function);
 		void addJSMethodWithReturn(Awesomium::WebString name, std::function<Awesomium::JSValue(const Awesomium::JSArray& args)> function);
+		std::vector<JSMethod> getJSMethods();
+		std::vector<JSMethodWithReturn> getJSMethodsWithReturns();
 	};
 
 	class HTMLMenu : public sf::Drawable
