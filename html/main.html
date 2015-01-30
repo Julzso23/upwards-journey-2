@@ -39,7 +39,7 @@
 
 			<div id="options" class="row menu">
 				<div class="col-md-8 col-md-offset-2">
-					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options-video')">Video</button>
+					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options-video'); populateResolutions()">Video</button>
 				</div>
 				<div class="col-md-8 col-md-offset-2">
 					<button class="btn btn-default btn-lg btn-block">Audio</button>
@@ -54,21 +54,9 @@
 
 			<div id="options-video" class="row menu">
 				<div class="col-md-8 col-md-offset-2">
-					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options-video-resolutions'); populateResolutions()">Screen resolution</button>
-				</div>
-				<div class="col-md-8 col-md-offset-2">
-					<button class="btn btn-default btn-lg btn-block" onclick="window.toggleFullscreen()">Toggle fullscreen</button>
-				</div>
-				<div class="col-md-8 col-md-offset-2">
-					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options')">Back</button>
-				</div>
-			</div>
-
-			<div id="options-video-resolutions" class="row menu">
-				<div class="col-md-8 col-md-offset-2">
 					<div class="dropdown">
 						<button class="btn btn-default btn-lg btn-block dropdown-toggle" type="button" id="dropdownMenu-resolutions" data-toggle="dropdown" aria-expanded="true">
-							Dropdown
+							Select resolution
 							<span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu-resolutions">
@@ -76,7 +64,10 @@
 					</div>
 				</div>
 				<div class="col-md-8 col-md-offset-2">
-					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options-video')">Back</button>
+					<button class="btn btn-default btn-lg btn-block" onclick="window.toggleFullscreen()">Toggle fullscreen</button>
+				</div>
+				<div class="col-md-8 col-md-offset-2">
+					<button class="btn btn-default btn-lg btn-block" onclick="setMenu('options')">Back</button>
 				</div>
 			</div>
 

@@ -5,10 +5,10 @@ menus = [
 
 function populateResolutions()
 {
-	$("#options-video-resolutions ul.dropdown-menu").html("");
+	$("#options-video ul.dropdown-menu").html("");
 	$.each(window.getResolutions(), function(key, value)
 	{
-		$("#options-video-resolutions ul.dropdown-menu").append(
+		$("#options-video ul.dropdown-menu").append(
 			'<li role="presentation"><a role="menuitem" tabindex="-1" href="" onclick="window.setResolution(' + value[0] + ', ' + value[1] + ')">' + value[0] + ' x ' + value[1] + '</a></li>');
 	});
 }
