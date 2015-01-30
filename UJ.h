@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Background.h"
 #include "GUI\Menu.h"
+#include "GUI\HTMLMenu.h"
 #include "ObsticleDropper.h"
 #include "controls\KeyCommand.h"
 #include "HUD.h"
@@ -33,41 +34,37 @@ private:
 	PickupDropper<Pickups::Health> healthDropper;
 	PickupDropper<Pickups::Coin> coinDropper;
 
-	GUI::Menu mainMenu;
-	GUI::Menu hatsMenu;
-	GUI::Menu optionsMenu;
-	GUI::Menu optionsVideoMenu;
-	GUI::Menu optionsVideoResolutionsMenu;
-	GUI::Menu optionsControlsMenu;
-	GUI::Menu optionsControlsGamepadMenu;
-	GUI::Menu optionsControlsGamepadSelectMenu;
-	GUI::Menu* curMenu;
+	GUI::HTMLMenu htmlMenu;
 
 	std::vector<KeyCommand> keyCommands;
 
 	bool paused;
 
 	sf::Font font;
-public:
-	UJ::UJ(sf::String title, sf::VideoMode size, bool fullscreen) : Game(title, size, fullscreen) {};
+
 
 	void load();
 
 	void update(float dt);
 
 	void draw(sf::RenderWindow* window);
+	void drawUnscaled(sf::RenderWindow* window);
 
 	void mousePressed(sf::Mouse::Button button, sf::Vector2i position);
 	void mouseReleased(sf::Mouse::Button button, sf::Vector2i position);
+	void mouseMoved(int x, int y);
 
 	void keyPressed(sf::Keyboard::Key key);
 	void keyReleased(sf::Keyboard::Key key);
 
-	void setMenu();
-	void setMenu(GUI::Menu* menu);
-
 	void joystickConnected(int id);
 	void joystickDisconnected(int id);
+
+	void windowResized(sf::Vector2u size);
+
+	void onExit();
+public:
+	UJ::UJ(sf::String title, sf::VideoMode size, bool fullscreen);
 };
 
 #endif

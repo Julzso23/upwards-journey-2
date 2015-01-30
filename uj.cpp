@@ -1,59 +1,52 @@
 #include "UJ.h"
 
+UJ::UJ(sf::String title, sf::VideoMode size, bool fullscreen)
+	: Game(title, size, fullscreen),
+	htmlMenu("main", sf::Vector2u(size.width, size.height))
+{
+}
+
 void UJ::load()
 {
 	font.loadFromFile("fonts/Frail-Sans.otf");
 
-	mainMenu.addButton(GUI::Button("Play", [&](){setMenu(); }, &font));
-	mainMenu.addButton(GUI::Button("Hats", [&](){setMenu(&hatsMenu); }, &font));
-	mainMenu.addButton(GUI::Button("Options", [&](){setMenu(&optionsMenu); }, &font));
-	mainMenu.addButton(GUI::Button("Exit", [&](){exit(); }, &font));
+	htmlMenu.addJSMethod(Awesomium::WSLit("play"), [&](const Awesomium::JSArray& args){
+		paused = false;
+		setCursorVisible(false);
+	});
+	htmlMenu.addJSMethod(Awesomium::WSLit("setResolution"), [&](const Awesomium::JSArray& args){
+		setResolution(sf::Vector2u(args[0].ToInteger(), args[1].ToInteger()));
+	});
+	htmlMenu.addJSMethod(Awesomium::WSLit("toggleFullscreen"), [&](const Awesomium::JSArray& args){
+		toggleFullscreen();
+	});
+	htmlMenu.addJSMethod(Awesomium::WSLit("setPlayerHat"), [&](const Awesomium::JSArray& args){
+		player.setHat(Awesomium::ToString(args[0].ToString()));
+	});
+	htmlMenu.addJSMethod(Awesomium::WSLit("exit"), [&](const Awesomium::JSArray& args){
+		exit();
+	});
 
-	hatsMenu.addButton(GUI::Button("None", [&](){player.setHat(""); }, &font));
-	hatsMenu.addButton(GUI::Button("Top hat", [&](){player.setHat("top"); }, &font));
-	hatsMenu.addButton(GUI::Button("Santa hat", [&](){player.setHat("santa"); }, &font));
-	hatsMenu.addButton(GUI::Button("Back", [&](){setMenu(&mainMenu); }, &font));
-
-	optionsMenu.addButton(GUI::Button("Video", [&](){setMenu(&optionsVideoMenu); }, &font));
-	optionsMenu.addButton(GUI::Button("Audio", [&](){}, &font));
-	optionsMenu.addButton(GUI::Button("Controls", [&](){setMenu(&optionsControlsMenu); }, &font));
-	optionsMenu.addButton(GUI::Button("Back", [&](){setMenu(&mainMenu); }, &font));
-
-	optionsVideoMenu.addButton(GUI::Button("Resolutions", [&](){setMenu(&optionsVideoResolutionsMenu); }, &font));
-	optionsVideoMenu.addButton(GUI::Button("Toggle Fullscreen", [&](){toggleFullscreen(); }, &font));
-	optionsVideoMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsMenu); }, &font));
-
-	optionsControlsMenu.addButton(GUI::Button("Gamepad", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
-	optionsControlsMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsMenu); }, &font));
-
-	optionsControlsGamepadMenu.addButton(GUI::Button("Select Gamepad", [&](){setMenu(&optionsControlsGamepadSelectMenu); }, &font));
-	optionsControlsGamepadMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsMenu); }, &font));
-
-	std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
-	for (int i = 0; i < gamepads->size(); i++)
+	htmlMenu.addJSMethodWithReturn(Awesomium::WSLit("getResolutions"), [&](const Awesomium::JSArray& args)
 	{
-		int id = (*gamepads)[i].getId();
-		optionsControlsGamepadSelectMenu.addButton(GUI::Button((*gamepads)[i].getIdentification().name, [&](){
-			gamepadManager.setCurrent(id);
-			setMenu(&optionsControlsGamepadMenu);
-		}, &font));
-	}
-	optionsControlsGamepadSelectMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
-
-	for (int i = 0; i < getSupportedResolutions().size(); i++)
-	{
-		optionsVideoResolutionsMenu.addButton(GUI::Button(std::to_string(getSupportedResolutions()[i].width) + " x " + std::to_string(getSupportedResolutions()[i].height), [&, i](){
-			setResolution(sf::Vector2u(getSupportedResolutions()[i].width, getSupportedResolutions()[i].height));
-		}, &font));
-	}
-	optionsVideoResolutionsMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsVideoMenu); }, &font));
-
-	curMenu = &mainMenu;
-	curMenu->show();
+		Awesomium::JSArray jsResolutions;
+		std::vector<sf::VideoMode> resolutions = getSupportedResolutions();
+		for (int i = 0; i < resolutions.size(); i++)
+		{
+			Awesomium::JSArray size;
+			size.Push(Awesomium::JSValue(static_cast<int>(resolutions[i].width)));
+			size.Push(Awesomium::JSValue(static_cast<int>(resolutions[i].height)));
+			jsResolutions.Push(size);
+		}
+		return jsResolutions;
+	});
 
 	std::vector<sf::Keyboard::Key> keys;
 	keys.insert(keys.end(), sf::Keyboard::Key::Escape);
-	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){setMenu(&mainMenu);}));
+	keyCommands.insert(keyCommands.end(), KeyCommand(keys, [&](){
+		paused = true;
+		setCursorVisible(true);
+	}));
 
 	xAxis.create(ControlSet(sf::Keyboard::Right, 0, sf::Joystick::X, true, -1), ControlSet(sf::Keyboard::Left, 0, sf::Joystick::X, false, -1), 0.25);
 	yAxis.create(ControlSet(sf::Keyboard::Down, 0, sf::Joystick::Y, true, -1), ControlSet(sf::Keyboard::Up, 0, sf::Joystick::Y, false, -1), 0.25);
@@ -90,7 +83,7 @@ void UJ::update(float dt)
 	}
 	else
 	{
-		curMenu->update(dt, mousePos());
+		htmlMenu.update();
 	}
 }
 
@@ -105,17 +98,27 @@ void UJ::draw(sf::RenderWindow* window)
 	window->draw(dropper);
 
 	window->draw(hud);
-
-	window->draw(*curMenu);
+}
+void UJ::drawUnscaled(sf::RenderWindow* window)
+{
+	if (paused)
+		window->draw(htmlMenu);
 }
 
 void UJ::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 {
-	curMenu->mousePressed(button, position);
+	if (paused)
+		htmlMenu.mousePressed(button, position);
 }
 void UJ::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 {
-	curMenu->mouseReleased(button, position);
+	if (paused)
+		htmlMenu.mouseReleased(button, position);
+}
+void UJ::mouseMoved(int x, int y)
+{
+	if (paused)
+		htmlMenu.mouseMoved(x, y);
 }
 
 void UJ::keyPressed(sf::Keyboard::Key key)
@@ -129,36 +132,22 @@ void UJ::keyReleased(sf::Keyboard::Key key)
 		keyCommands[i].keyReleased(key);
 }
 
-void UJ::setMenu()
-{
-	curMenu->hide();
-	paused = false;
-	setCursorVisible(false);
-}
-void UJ::setMenu(GUI::Menu* menu)
-{
-	curMenu->hide();
-	curMenu = menu;
-	curMenu->show();
-	paused = true;
-	setCursorVisible(true);
-}
-
 void UJ::joystickConnected(int id)
 {
 	gamepadManager.addGamepad(id);
 	std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
-	optionsControlsGamepadSelectMenu.clearButtons();
-	for (int i = 0; i < gamepads->size(); i++)
-	{
-		optionsControlsGamepadSelectMenu.addButton(GUI::Button((*gamepads)[i].getIdentification().name, [&](){
-			gamepadManager.setCurrent(id);
-			setMenu(&optionsControlsGamepadMenu);
-		}, &font));
-	}
-	optionsControlsGamepadSelectMenu.addButton(GUI::Button("Back", [&](){setMenu(&optionsControlsGamepadMenu); }, &font));
 }
 void UJ::joystickDisconnected(int id)
 {
 	gamepadManager.removeGamepad(id);
+}
+
+void UJ::windowResized(sf::Vector2u size)
+{
+	htmlMenu.windowResized(size);
+}
+
+void UJ::onExit()
+{
+	htmlMenu.onExit();
 }
