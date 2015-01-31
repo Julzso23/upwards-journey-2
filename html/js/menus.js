@@ -12,6 +12,15 @@ function populateResolutions()
 			'<li role="presentation"><a role="menuitem" tabindex="-1" href="" onclick="window.setResolution(' + value[0] + ', ' + value[1] + ')">' + value[0] + ' x ' + value[1] + '</a></li>');
 	});
 }
+function populateGamepads()
+{
+	$("#options-controls-gamepad ul.dropdown-menu").html("");
+	$.each(window.getGamepads(), function(key, value)
+	{
+		$("#options-controls-gamepad ul.dropdown-menu").append(
+			'<li role="presentation"><a role="menuitem" tabindex="-1" href="" onclick="window.setGamepad(' + value[0] + ')">[' + value[0] + '] ' + value[1] + '</a></li>');
+	});
+}
 
 function setMenu(menu)
 {

@@ -23,6 +23,9 @@ void UJ::load()
 	htmlMenu.addJSMethod(Awesomium::WSLit("setPlayerHat"), [&](const Awesomium::JSArray& args){
 		player.setHat(Awesomium::ToString(args[0].ToString()));
 	});
+	htmlMenu.addJSMethod(Awesomium::WSLit("setGamepad"), [&](const Awesomium::JSArray& args){
+		gamepadManager.setCurrent(args[0].ToInteger());
+	});
 	htmlMenu.addJSMethod(Awesomium::WSLit("exit"), [&](const Awesomium::JSArray& args){
 		exit();
 	});
@@ -39,6 +42,19 @@ void UJ::load()
 			jsResolutions.Push(size);
 		}
 		return jsResolutions;
+	});
+	htmlMenu.addJSMethodWithReturn(Awesomium::WSLit("getGamepads"), [&](const Awesomium::JSArray& args)
+	{
+		Awesomium::JSArray jsGamepads;
+		std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
+		for (int i = 0; i < gamepads->size(); i++)
+		{
+			Awesomium::JSArray gamepad;
+			gamepad.Push(Awesomium::JSValue((*gamepads)[i].getId()));
+			gamepad.Push(Awesomium::JSValue((*gamepads)[i].getIdentification().name.toAnsiString().c_str()));
+			jsGamepads.Push(gamepad);
+		}
+		return jsGamepads;
 	});
 
 	std::vector<sf::Keyboard::Key> keys;
