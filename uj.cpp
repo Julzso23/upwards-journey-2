@@ -76,6 +76,8 @@ void UJ::load()
 	hud.setPlayer(&player);
 
 	paused = true;
+
+	modHandler.load();
 }
 
 void UJ::update(float dt)
@@ -85,6 +87,8 @@ void UJ::update(float dt)
 	background.update(dt);
 
 	hud.update();
+
+	modHandler.update(dt);
 
 	if (!paused)
 	{
@@ -166,4 +170,5 @@ void UJ::windowResized(sf::Vector2u size)
 void UJ::onExit()
 {
 	htmlMenu.onExit();
+	modHandler.onExit();
 }

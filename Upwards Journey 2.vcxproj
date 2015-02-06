@@ -32,7 +32,15 @@
     <ClInclude Include="GUI\HTMLMenu.h" />
     <ClInclude Include="GUI\Menu.h" />
     <ClInclude Include="HUD.h" />
+    <ClInclude Include="lib\dirent.h" />
+    <ClInclude Include="lib\lauxlib.h" />
+    <ClInclude Include="lib\lua.h" />
+    <ClInclude Include="lib\lua.hpp" />
+    <ClInclude Include="lib\luaconf.h" />
+    <ClInclude Include="lib\luajit.h" />
+    <ClInclude Include="lib\lualib.h" />
     <ClInclude Include="Maths.h" />
+    <ClInclude Include="ModHandler.h" />
     <ClInclude Include="Obsticle.h" />
     <ClInclude Include="ObsticleDropper.h" />
     <ClInclude Include="pickups\Coin.h" />
@@ -58,6 +66,7 @@
     <ClCompile Include="hud.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="maths.cpp" />
+    <ClCompile Include="modHandler.cpp" />
     <ClCompile Include="obsticle.cpp" />
     <ClCompile Include="obsticleDropper.cpp" />
     <ClCompile Include="pickups\coin.cpp" />
@@ -150,8 +159,8 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Julian\Documents\SFML-2.2\lib;C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.5.0\build\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;glew.lib;jpeg.lib;openal32.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;sndfile.lib;%(AdditionalDependencies);awesomium.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Julian\Documents\SFML-2.2\lib;C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.5.0\build\lib;C:\Users\Julian\Documents\LuaJIT-2.0.3\src</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glew.lib;jpeg.lib;openal32.lib;lua51.lib;sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;sndfile.lib;%(AdditionalDependencies);awesomium.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -186,8 +195,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Users\Julian\Documents\SFML-2.2\lib;C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.5.0\build\lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>freetype.lib;glew.lib;jpeg.lib;openal32.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;sndfile.lib;%(AdditionalDependencies);awesomium.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Julian\Documents\SFML-2.2\lib;C:\Program Files (x86)\Awesomium Technologies LLC\Awesomium SDK\1.7.5.0\build\lib;C:\Users\Julian\Documents\LuaJIT-2.0.3\src</AdditionalLibraryDirectories>
+      <AdditionalDependencies>freetype.lib;glew.lib;jpeg.lib;openal32.lib;lua51.lib;sfml-audio.lib;sfml-graphics.lib;sfml-main.lib;sfml-network.lib;sfml-system.lib;sfml-window.lib;sndfile.lib;%(AdditionalDependencies);awesomium.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">

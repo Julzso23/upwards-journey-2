@@ -13,6 +13,7 @@
 #include "HUD.h"
 #include "pickups\PickupDropper.h"
 #include "controls\GamepadManager.h"
+#include "ModHandler.h"
 
 class UJ : public Game
 {
@@ -41,6 +42,8 @@ private:
 	bool paused;
 
 	sf::Font font;
+
+	ModHandler modHandler;
 
 
 	void load();
