@@ -88,7 +88,7 @@ void UJ::update(float dt)
 
 	hud.update();
 
-	modHandler.update(dt);
+	modHandler.update(dt, paused);
 
 	if (!paused)
 	{
@@ -118,6 +118,8 @@ void UJ::draw(sf::RenderWindow* window)
 	window->draw(dropper);
 
 	window->draw(hud);
+
+	modHandler.draw();
 }
 void UJ::drawUnscaled(sf::RenderWindow* window)
 {
@@ -129,11 +131,15 @@ void UJ::mousePressed(sf::Mouse::Button button, sf::Vector2i position)
 {
 	if (paused)
 		htmlMenu.mousePressed(button, position);
+
+	modHandler.mousePressed(button, position.x, position.y);
 }
 void UJ::mouseReleased(sf::Mouse::Button button, sf::Vector2i position)
 {
 	if (paused)
 		htmlMenu.mouseReleased(button, position);
+
+	modHandler.mouseReleased(button, position.x, position.y);
 }
 void UJ::mouseMoved(int x, int y)
 {
