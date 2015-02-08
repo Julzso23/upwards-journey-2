@@ -20,11 +20,11 @@ void ObsticleDropper::update(float dt)
 	if (timer.getElapsedTime().asSeconds() >= 1 / dropRate)
 	{
 		timer.restart();
-		float size = (rand() % (maxSize - minSize)) + ((maxSize + minSize) / 2);
-		obsticles.insert(obsticles.end(), Obsticle(sf::Vector2f((rand() % (1920 / ((maxSize + minSize) / 2))) * ((maxSize + minSize) / 2), -size), size, sf::Vector2f(0.f, (((maxSize + minSize) / 2) * 1200) / size)));
+		float size = (float)((rand() % (maxSize - minSize)) + ((maxSize + minSize) / 2));
+		obsticles.insert(obsticles.end(), Obsticle(sf::Vector2f((rand() % (1920 / ((maxSize + minSize) / 2))) * ((maxSize + minSize) / 2.f), -size), size, sf::Vector2f(0.f, (((maxSize + minSize) / 2.f) * 1200.f) / size)));
 	}
 
-	for (int i = 0; i < obsticles.size(); i++)
+	for (std::size_t i = 0; i < obsticles.size(); i++)
 	{
 		if (obsticles[i].drop(dt))
 			obsticles.erase(obsticles.begin() + i);
@@ -33,7 +33,7 @@ void ObsticleDropper::update(float dt)
 
 void ObsticleDropper::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = 0; i < obsticles.size(); i++)
+	for (std::size_t i = 0; i < obsticles.size(); i++)
 		target.draw(obsticles[i]);
 }
 

@@ -12,7 +12,7 @@ Player::Player()
 	animation.setScale(sf::Vector2f(2.f, 2.f));
 	vibrationOffset = sf::Vector2f(0, 0);
 	hatSprite.setTexture(hatTexure);
-	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2, hatTexure.getSize().y / 2 + 56.f));
+	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2.f, hatTexure.getSize().y / 2.f + 56.f));
 	score = 0;
 
 	collisionLines.resize(4);
@@ -39,8 +39,8 @@ void Player::update(float dt)
 	hatSprite.setPosition(vibrationOffset.x, vibrationOffset.y);
 	if (respawning)
 	{
-		animation.setColor(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
-		hatSprite.setColor(sf::Color(255, 255, 255, 200 * sin(respawnClock.getElapsedTime().asSeconds() * 10)));
+		animation.setColor(sf::Color(255, 255, 255, (sf::Uint8)floor(200 * sin(respawnClock.getElapsedTime().asSeconds() * 10))));
+		hatSprite.setColor(sf::Color(255, 255, 255, (sf::Uint8)floor(200 * sin(respawnClock.getElapsedTime().asSeconds() * 10))));
 		if (respawnClock.getElapsedTime().asSeconds() > 3.f)
 			respawning = false;
 	}
@@ -83,8 +83,8 @@ void Player::isColliding(Obsticle* obsticle)
 		if ((position.x > obsticlePos.x) && (position.x < (obsticlePos.x + size)) && (position.y > obsticlePos.y) && (position.y < (obsticlePos.y + size)))
 			colliding = true;
 		else
-			for (int i = 0; i < obsticleLines->size(); i++)
-				for (int e = 0; e < collisionLines.size(); e++)
+			for (std::size_t i = 0; i < obsticleLines->size(); i++)
+				for (std::size_t e = 0; e < collisionLines.size(); e++)
 					if (Maths::lineIntersect((*obsticleLines)[i], collisionLines[e], nullptr, nullptr))
 					{
 						colliding = true;
@@ -129,5 +129,5 @@ void Player::setHat(sf::String name)
 		hatTexure.loadFromFile("images/hats/" + name + ".png");
 	hatSprite = sf::Sprite();
 	hatSprite.setTexture(hatTexure);
-	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2, hatTexure.getSize().y / 2 + 56.f));
+	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2.f, hatTexure.getSize().y / 2.f + 56.f));
 }

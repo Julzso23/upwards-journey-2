@@ -19,7 +19,7 @@ void PickupDropper<T>::update(float dt, Player* player)
 		timer.restart();
 		pickups.insert(pickups.end(), T(sf::Vector2f((rand() % 192) * 10.f, -48.f), 1, &texture));
 	}
-	for (int i = 0; i < pickups.size(); i++)
+	for (std::size_t i = 0; i < pickups.size(); i++)
 	{
 		if (pickups[i].drop(dt) || pickups[i].isColliding(player))
 			pickups.erase(pickups.begin() + i);
@@ -29,7 +29,7 @@ void PickupDropper<T>::update(float dt, Player* player)
 template <class T>
 void PickupDropper<T>::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	for (int i = 0; i < pickups.size(); i++)
+	for (std::size_t i = 0; i < pickups.size(); i++)
 		target.draw(pickups[i]);
 }
 

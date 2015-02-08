@@ -5,7 +5,7 @@ HUD::HUD()
 {
 	heartTexure.loadFromFile("images/heart.png");
 	for (int i = 0; i < 5; i++)
-		hearts[i].setPosition(sf::Vector2f(i * 64, 0));
+		hearts[i].setPosition(sf::Vector2f(i * 64.f, 0.f));
 
 	HUDFont.loadFromFile("fonts/Frail-Sans.otf");
 
@@ -39,7 +39,7 @@ void HUD::update()
 {
 	sf::Color drawColour(255, 255, 255);
 	if (player->getLives() == 0)
-		drawColour = sf::Color(255, 150 * abs(sin(heartFlashClock.getElapsedTime().asSeconds() * 10)) + 100, 150 * abs(sin(heartFlashClock.getElapsedTime().asSeconds() * 10)) + 100);
+		drawColour = sf::Color(255, (sf::Uint8)floor(150 * abs(sin(heartFlashClock.getElapsedTime().asSeconds() * 10)) + 100), (sf::Uint8)floor(150 * abs(sin(heartFlashClock.getElapsedTime().asSeconds() * 10)) + 100));
 	for (int i = 0; i < 5; i++)
 	{
 		hearts[i].setColor(drawColour);

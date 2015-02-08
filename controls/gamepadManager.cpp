@@ -13,7 +13,7 @@ void GamepadManager::setCurrent(int id)
 	if (id == -1)
 		current = -1;
 	else
-		for (int i = 0; i < gamepads.size(); i++)
+		for (std::size_t i = 0; i < gamepads.size(); i++)
 			if (gamepads[i].getId() == id)
 				current = i;
 }
@@ -24,7 +24,7 @@ void GamepadManager::addGamepad(int id)
 }
 void GamepadManager::removeGamepad(int id)
 {
-	for (int i = 0; i < gamepads.size(); i++)
+	for (std::size_t i = 0; i < gamepads.size(); i++)
 		if (gamepads[i].getId() == id)
 			gamepads.erase(gamepads.begin() + i);
 }

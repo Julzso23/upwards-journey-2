@@ -34,7 +34,7 @@ void UJ::load()
 	{
 		Awesomium::JSArray jsResolutions;
 		std::vector<sf::VideoMode> resolutions = getSupportedResolutions();
-		for (int i = 0; i < resolutions.size(); i++)
+		for (std::size_t i = 0; i < resolutions.size(); i++)
 		{
 			Awesomium::JSArray size;
 			size.Push(Awesomium::JSValue(static_cast<int>(resolutions[i].width)));
@@ -47,11 +47,11 @@ void UJ::load()
 	{
 		Awesomium::JSArray jsGamepads;
 		std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
-		for (int i = 0; i < gamepads->size(); i++)
+		for (std::size_t i = 0; i < gamepads->size(); i++)
 		{
 			Awesomium::JSArray gamepad;
 			gamepad.Push(Awesomium::JSValue((*gamepads)[i].getId()));
-			gamepad.Push(Awesomium::JSValue((*gamepads)[i].getIdentification().name.toAnsiString().c_str()));
+			gamepad.Push(Awesomium::JSValue(Awesomium::WSLit((*gamepads)[i].getIdentification().name.toAnsiString().c_str())));
 			jsGamepads.Push(gamepad);
 		}
 		return jsGamepads;
@@ -93,7 +93,7 @@ void UJ::update(float dt)
 	if (!paused)
 	{
 		player.control(sf::Vector2f(xAxis.getValue(), yAxis.getValue()), dt);
-		for (int i = 0; i < obsticles->size(); i++)
+		for (std::size_t i = 0; i < obsticles->size(); i++)
 			player.isColliding(&(*obsticles)[i]);
 
 		dropper.update(dt);
@@ -149,12 +149,12 @@ void UJ::mouseMoved(int x, int y)
 
 void UJ::keyPressed(sf::Keyboard::Key key)
 {
-	for (int i = 0; i < keyCommands.size(); i++)
+	for (std::size_t i = 0; i < keyCommands.size(); i++)
 		keyCommands[i].keyPressed(key);
 }
 void UJ::keyReleased(sf::Keyboard::Key key)
 {
-	for (int i = 0; i < keyCommands.size(); i++)
+	for (std::size_t i = 0; i < keyCommands.size(); i++)
 		keyCommands[i].keyReleased(key);
 }
 

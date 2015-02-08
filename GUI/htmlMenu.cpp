@@ -5,13 +5,13 @@ namespace GUI
 	using namespace Awesomium;
 	void MethodCallHandler::OnMethodCall(WebView* caller, unsigned int remoteObjectId, const WebString& methodName, const JSArray& args)
 	{
-		for (int i = 0; i < methods.size(); i++)
+		for (std::size_t i = 0; i < methods.size(); i++)
 			if (methods[i].name == methodName)
 				methods[i].function(args);
 	}
 	JSValue MethodCallHandler::OnMethodCallWithReturnValue(WebView* caller, unsigned int remoteObjectId, const WebString& methodName, const JSArray& args)
 	{
-		for (int i = 0; i < returnMethods.size(); i++)
+		for (std::size_t i = 0; i < returnMethods.size(); i++)
 			if (returnMethods[i].name == methodName)
 				return returnMethods[i].function(args);
 		return JSValue();
@@ -125,9 +125,9 @@ namespace GUI
 		JSValue window = view->ExecuteJavascriptWithResult(WSLit("window"), WSLit(""));
 		if (window.IsObject())
 		{
-			for (int i = 0; i < methods.size(); i++)
+			for (std::size_t i = 0; i < methods.size(); i++)
 				window.ToObject().SetCustomMethod(methods[i].name, false);
-			for (int i = 0; i < returnMethods.size(); i++)
+			for (std::size_t i = 0; i < returnMethods.size(); i++)
 				window.ToObject().SetCustomMethod(returnMethods[i].name, true);
 		}
 	}

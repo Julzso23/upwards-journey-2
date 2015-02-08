@@ -10,7 +10,7 @@ KeyCommand::KeyCommand(std::vector<sf::Keyboard::Key> keys, std::function<void()
 
 void KeyCommand::create(std::vector<sf::Keyboard::Key> keys, std::function<void()> func)
 {
-	for (int i = 0; i < keys.size(); i++)
+	for (std::size_t i = 0; i < keys.size(); i++)
 	{
 		KeyState key;
 		key.key = keys[i];
@@ -23,7 +23,7 @@ void KeyCommand::create(std::vector<sf::Keyboard::Key> keys, std::function<void(
 void KeyCommand::keyPressed(sf::Keyboard::Key key)
 {
 	bool allPressed = true;
-	for (int i = 0; i < keys.size(); i++)
+	for (std::size_t i = 0; i < keys.size(); i++)
 	{
 		if (keys[i].key == key)
 		{
@@ -42,7 +42,7 @@ void KeyCommand::keyPressed(sf::Keyboard::Key key)
 }
 void KeyCommand::keyReleased(sf::Keyboard::Key key)
 {
-	for (int i = 0; i < keys.size(); i++)
+	for (std::size_t i = 0; i < keys.size(); i++)
 		if (keys[i].key == key)
 			keys[i].pressed = false;
 }
