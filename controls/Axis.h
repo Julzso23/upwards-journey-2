@@ -2,19 +2,19 @@
 #define CONTROLS_AXIS_H
 
 #include <SFML\Graphics.hpp>
+#include "GamepadManager.h"
 
 class ControlSet
 {
 private:
 	int key;
-	int joystick;
-	int axis;
+	GamepadManager* manager;
+	XBoxAxes axis;
 	bool axisIsPos;
 	int mouse;
 public:
-	ControlSet();
-	ControlSet(int key, int joystick, int axis, bool axisIsPos, int mouse);
-	void create(int key, int joystick, int axis, bool axisIsPos, int mouse);
+	ControlSet(int key, GamepadManager* manager, XBoxAxes axis, bool axisIsPos, int mouse);
+	void create(int key, GamepadManager* manager, XBoxAxes axis, bool axisIsPos, int mouse);
 	float getValue();
 };
 
@@ -25,9 +25,8 @@ private:
 	ControlSet negative;
 	float deadZone;
 public:
-	Axis();
 	Axis(ControlSet positive, ControlSet negative, float deadZone);
-	void create(ControlSet positive, ControlSet negative, float deadZone);
+	void create(float deadZone);
 	float getValue();
 };
 

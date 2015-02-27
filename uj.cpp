@@ -2,7 +2,9 @@
 
 UJ::UJ(sf::String title, sf::VideoMode size, bool fullscreen)
 	: Game(title, size, fullscreen),
-	htmlMenu("main", sf::Vector2u(size.width, size.height))
+	htmlMenu("main", sf::Vector2u(size.width, size.height)),
+	xAxis(ControlSet(sf::Keyboard::Right, &gamepadManager, XBoxAxes::LeftX, true, -1), ControlSet(sf::Keyboard::Left, &gamepadManager, XBoxAxes::LeftX, false, -1), 0.25),
+	yAxis(ControlSet(sf::Keyboard::Down, &gamepadManager, XBoxAxes::LeftY, true, -1), ControlSet(sf::Keyboard::Up, &gamepadManager, XBoxAxes::LeftY, false, -1), 0.25)
 {
 }
 
@@ -64,8 +66,7 @@ void UJ::load()
 		setCursorVisible(true);
 	}));
 
-	xAxis.create(ControlSet(sf::Keyboard::Right, 0, sf::Joystick::X, true, -1), ControlSet(sf::Keyboard::Left, 0, sf::Joystick::X, false, -1), 0.25);
-	yAxis.create(ControlSet(sf::Keyboard::Down, 0, sf::Joystick::Y, true, -1), ControlSet(sf::Keyboard::Up, 0, sf::Joystick::Y, false, -1), 0.25);
+	gamepadManager.setCurrent(0);
 
 	dropper.create(6.f, 192, 128);
 	obsticles = dropper.getObsticles();

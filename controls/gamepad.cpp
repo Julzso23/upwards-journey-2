@@ -23,6 +23,6 @@ bool Gamepad::isDown(XBoxButtons button)
 float Gamepad::getAxis(XBoxAxes axis)
 {
 	if (sf::Joystick::hasAxis(id, sf::Joystick::Axis(axis)))
-		return sf::Joystick::getAxisPosition(id, sf::Joystick::Axis(axis));
+		return sf::Joystick::getAxisPosition(id, sf::Joystick::Axis(axis)) / 100.f;
 	return 0.f;
 }
