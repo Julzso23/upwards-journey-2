@@ -6,7 +6,6 @@
 #include "controls\Axis.h"
 #include "Player.h"
 #include "Background.h"
-#include "GUI\Menu.h"
 #include "GUI\HTMLMenu.h"
 #include "ObsticleDropper.h"
 #include "controls\KeyCommand.h"
