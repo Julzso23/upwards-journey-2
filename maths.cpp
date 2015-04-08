@@ -32,13 +32,8 @@ namespace Maths
 		float s2_x = p3_x - p2_x;
 		float s2_y = p3_y - p2_y;
 
-		float s = 0.f;
-		float t = 0.f;
-		if ((-s2_x * s1_y + s1_x * s2_y) != 0.f)
-		{
-			s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
-			t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
-		}
+		float s = (-s1_y * (p0_x - p2_x) + s1_x * (p0_y - p2_y)) / (-s2_x * s1_y + s1_x * s2_y);
+		float t = (s2_x * (p0_y - p2_y) - s2_y * (p0_x - p2_x)) / (-s2_x * s1_y + s1_x * s2_y);
 
 		if (s >= 0 && s <= 1 && t >= 0 && t <= 1)
 		{
