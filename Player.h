@@ -12,11 +12,11 @@ private:
 	sf::Vector2f speed;
 	int lives;
 	bool respawning;
-	sf::Clock respawnClock;
+	float respawnClock;
 	Animation animation;
 	sf::Texture hatTexure;
 	sf::Sprite hatSprite;
-	sf::Clock vibrateClock;
+	float vibrateClock;
 	sf::Vector2f vibrationOffset;
 	int score;
 

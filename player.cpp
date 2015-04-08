@@ -11,6 +11,8 @@ Player::Player()
 	animation.create("images/player.png", 0.1f, 2, sf::Vector2i(64, 64), 1);
 	animation.setScale(sf::Vector2f(2.f, 2.f));
 	vibrationOffset = sf::Vector2f(0, 0);
+	vibrateClock = 0.f;
+	respawnClock = 0.f;
 	hatSprite.setTexture(hatTexure);
 	hatSprite.setOrigin(sf::Vector2f(hatTexure.getSize().x / 2.f, hatTexure.getSize().y / 2.f + 56.f));
 	score = 0;
@@ -32,17 +34,22 @@ void Player::update(float dt)
 {
 	sf::Vector2f position = getPosition();
 	animation.update(dt);
-	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock.getElapsedTime().asSeconds()));
+	vibrateClock += dt;
+	vibrationOffset = sf::Vector2f(0, 4 * sin(16 * vibrateClock));
 	animation.setPosition(sf::Vector2f(vibrationOffset.x, vibrationOffset.y));
-	if (vibrateClock.getElapsedTime().asSeconds() >= 2 * 3.14159265)
-		vibrateClock.restart();
+	if (vibrateClock >= 2 * 3.14159265)
+		vibrateClock = 0.f;
 	hatSprite.setPosition(vibrationOffset.x, vibrationOffset.y);
 	if (respawning)
 	{
-		animation.setColor(sf::Color(255, 255, 255, (sf::Uint8)floor(200 * sin(respawnClock.getElapsedTime().asSeconds() * 10))));
-		hatSprite.setColor(sf::Color(255, 255, 255, (sf::Uint8)floor(200 * sin(respawnClock.getElapsedTime().asSeconds() * 10))));
-		if (respawnClock.getElapsedTime().asSeconds() > 3.f)
+		respawnClock += dt;
+		animation.setColor(sf::Color(255, 255, 255, (sf::Uint8)abs(floor(200 * sin(respawnClock * 10)))));
+		hatSprite.setColor(sf::Color(255, 255, 255, (sf::Uint8)abs(floor(200 * sin(respawnClock * 10)))));
+		if (respawnClock > 3.f)
+		{
 			respawning = false;
+			respawnClock = 0.f;
+		}
 	}
 	else
 	{
@@ -66,7 +73,7 @@ void Player::isColliding(Obsticle* obsticle)
 		float size = obsticle->getSize();
 		float w = 10.f;
 		float h = 48.f;
-		float angle = (3.14159265359f * animation.getRotation()) / 180;
+		float angle = (3.14159265359f * animation.getRotation()) / 180.f;
 		sf::Vector2f position = getPosition();
 		// Top
 		collisionLines[0].setPoints(sf::Vector2f(position.x - w * cos(angle) + h * sin(angle), position.y - w * sin(angle) - h * cos(angle)), sf::Vector2f(position.x + w * cos(angle) + h * sin(angle), position.y + w * sin(angle) - h * cos(angle)));
@@ -92,10 +99,8 @@ void Player::isColliding(Obsticle* obsticle)
 					}
 		if (colliding)
 		{
-			respawnClock.restart();
-			lives--;
-			if (lives < 0)
-				lives = 0;
+			if (lives > 0)
+				lives--;
 			respawning = true;
 		}
 	}
