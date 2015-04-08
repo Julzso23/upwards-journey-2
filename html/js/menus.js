@@ -1,15 +1,10 @@
-menus = [
-	"main",
-	"options"
-];
-
 function populateResolutions()
 {
-	$("#options-video ul.dropdown-menu").html("");
+	$("#options-video-resolutions>.resolutions").html("");
 	$.each(window.getResolutions(), function(key, value)
 	{
-		$("#options-video ul.dropdown-menu").append(
-			'<li role="presentation"><a role="menuitem" tabindex="-1" href="" onclick="window.setResolution(' + value[0] + ', ' + value[1] + ')">' + value[0] + ' x ' + value[1] + '</a></li>');
+		$("#options-video-resolutions>.resolutions").append(
+			'<div class="col-md-3 col-xs-4"><button class="btn btn-default btn-block" onclick="window.setResolution(' + value[0] + ', ' + value[1] + ')">' + value[0] + ' x ' + value[1] + '</button></div>');
 	});
 }
 function populateGamepads()
