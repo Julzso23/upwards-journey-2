@@ -12,7 +12,7 @@
 #include "HUD.h"
 #include "pickups\PickupDropper.h"
 #include "controls\GamepadManager.h"
-#include "ModHandler.h"
+//#include "ModHandler.h"
 
 class UJ : public Game
 {
@@ -42,7 +42,7 @@ private:
 
 	sf::Font font;
 
-	ModHandler modHandler;
+	//ModHandler modHandler;
 
 
 	void load();
