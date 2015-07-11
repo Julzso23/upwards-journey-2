@@ -10,9 +10,8 @@ GamepadManager::GamepadManager()
 
 void GamepadManager::setCurrent(int id)
 {
-	if (id == -1)
-		current = -1;
-	else
+	current = -1;
+	if (id != -1)
 		for (std::size_t i = 0; i < gamepads.size(); i++)
 			if (gamepads[i].getId() == id)
 				current = i;
