@@ -162,6 +162,7 @@ void UJ::keyReleased(sf::Keyboard::Key key)
 void UJ::joystickConnected(int id)
 {
 	gamepadManager.addGamepad(id);
+	gamepadManager.setCurrent(0);
 	std::vector<Gamepad>* gamepads = gamepadManager.getGamepads();
 }
 void UJ::joystickDisconnected(int id)
